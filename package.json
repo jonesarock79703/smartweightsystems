@@ -1,0 +1,11 @@
+{
+  "name": "smartweight-systems-website",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node smartweight-backend/server.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.13"
+  }
+}

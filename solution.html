@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solution | SmartWeight Systems</title>
+  <meta name="description" content="Explore SmartWeight Systems IoT weight monitoring solution and request a live demonstration.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-mesh"></div>
+
+<header class="navbar">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <div class="brand-logo-wrap">
+        <img src="assets/smartweight-logo.jpeg" alt="SmartWeight Systems Logo">
+      </div>
+      <div class="brand-text">
+        <strong>SmartWeight Systems</strong>
+        <small>Automated Inventory Intelligence</small>
+      </div>
+    </a>
+    <button class="menu" aria-label="Toggle navigation">☰</button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a class="active" href="solution.html">Solution</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+      <a class="nav-admin-btn" href="admin.html">Admin</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="badge-glow" style="margin-bottom:12px;">OUR INDUSTRIAL SOLUTION</div>
+        <h2>See SmartWeight in Action</h2>
+        <p>Continuous IoT scale telemetry gives warehouse and procurement managers live, effortless visibility.</p>
+      </div>
+
+      <div class="carousel-wrap">
+        <div class="carousel">
+          <div class="slide active">
+            <img src="assets/smartweight-logo.jpeg" alt="SmartWeight Systems Logo">
+          </div>
+          <div class="slide">
+            <img src="assets/smartweight-features.png" alt="SmartWeight Systems features">
+          </div>
+          <div class="slide">
+            <img src="assets/smartweight-contact.png" alt="SmartWeight Systems contact card">
+          </div>
+        </div>
+        <button class="arrow prev" onclick="changeSlide(-1)" aria-label="Previous slide">‹</button>
+        <button class="arrow next" onclick="changeSlide(1)" aria-label="Next slide">›</button>
+        <div class="dots">
+          <span class="dot active" onclick="goSlide(0)"></span>
+          <span class="dot" onclick="goSlide(1)"></span>
+          <span class="dot" onclick="goSlide(2)"></span>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:32px;">
+        <button class="btn btn-primary" id="demoBtn">
+          <span>Request a Demo</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+
+      <div class="form-panel" id="demoForm">
+        <h2>Request a Live Pilot</h2>
+        <p style="color:#64748b;margin:6px 0 24px;">Tell us how SmartWeight can help optimize your facility's inventory.</p>
+        <form id="demoRequestForm">
+          <div class="form-grid">
+            <div class="field">
+              <label>Name *</label>
+              <input required type="text" name="name" placeholder="Stephen Jones">
+            </div>
+            <div class="field">
+              <label>Email *</label>
+              <input required type="email" name="email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label>Phone Number *</label>
+              <input required type="tel" name="phone" placeholder="+91 Phone number">
+            </div>
+            <div class="field">
+              <label>Company Name</label>
+              <input type="text" name="companyName" placeholder="Company name">
+            </div>
+            <div class="field full">
+              <label>Requirement / Message</label>
+              <textarea name="message" placeholder="Tell us about your requirement"></textarea>
+            </div>
+            <div class="field full">
+              <button class="btn btn-primary" type="submit" style="width:100%;">Submit Request</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    &copy; 2026 SmartWeight Systems &bull; Automated Inventory Intelligence &bull; Salem, India
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

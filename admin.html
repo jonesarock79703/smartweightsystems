@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Admin Console | SmartWeight Systems</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .stat-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .stat-card h4 {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 10px;
+      font-weight: 700;
+    }
+    .stat-card .value {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .card-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 28px;
+    }
+    .card-panel h3 {
+      margin: 0 0 20px;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    th {
+      background: var(--bg-alt);
+      color: var(--navy);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    tbody tr:hover {
+      background: var(--teal-tint);
+    }
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .tag-new {
+      background: rgba(19, 190, 174, 0.15);
+      color: #0b7c72;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html#home" class="brand" aria-label="SmartWeight Systems Home">
+        <div class="brand-logo-frame">
+          <img src="assets/smartweight-logo.jpeg" alt="SmartWeight Systems Logo">
+        </div>
+        <div class="brand-meta">
+          <span class="brand-name">SmartWeight Systems</span>
+          <span class="brand-subtitle">Automated Inventory Intelligence</span>
+        </div>
+      </a>
+
+      <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+        <div class="hamburger-box">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </div>
+      </button>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links" id="navLinksMenu">
+          <li><a href="index.html#home" class="nav-link">Home</a></li>
+          <li><a href="index.html#solution" class="nav-link">Solution</a></li>
+          <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+          <li><a href="admin.html" class="nav-link active" style="color: var(--teal); font-weight: 700;">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-container">
+    <div class="admin-header">
+      <div>
+        <h1 style="color: var(--navy); font-size: 1.85rem; font-weight: 800; margin-bottom: 6px;">Admin Console</h1>
+        <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem;">Management of incoming demo requests, leads, and customer inquiries.</p>
+      </div>
+      <button class="btn btn-primary" onclick="loadAllDashboardData()">🔄 Refresh Data</button>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <h4>📋 Demo Requests</h4>
+        <div class="value" id="statDemos" style="color: var(--teal);">0</div>
+      </div>
+      <div class="stat-card">
+        <h4>✉️ Contact Inquiries</h4>
+        <div class="value" id="statContacts" style="color: var(--navy);">0</div>
+      </div>
+    </div>
+
+    <!-- Demo Requests Table -->
+    <div class="card-panel">
+      <h3>📋 Recent Demo Requests</h3>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Company</th>
+              <th>Message</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="demoTableBody">
+            <tr><td colspan="8" style="text-align:center;color:#94a3b8;padding:24px;">Loading requests...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Contact Messages Table -->
+    <div class="card-panel">
+      <h3>✉️ Contact Form Inquiries</h3>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Message</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="contactTableBody">
+            <tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:24px;">Loading messages...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="script.js"></script>
+  <script>
+    async function loadAllDashboardData() {
+      try {
+        // 1. Fetch Demo Requests
+        const demoRes = await fetch("/api/demo");
+        const demoData = await demoRes.json();
+        if (demoData.success) {
+          document.getElementById("statDemos").textContent = demoData.count;
+          const tbody = document.getElementById("demoTableBody");
+          if (demoData.data.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#94a3b8;padding:24px;">No demo requests yet.</td></tr>`;
+          } else {
+            tbody.innerHTML = demoData.data.map(d => `
+              <tr>
+                <td>#${d.id}</td>
+                <td><strong>${escapeHtml(d.name)}</strong></td>
+                <td><a href="mailto:${escapeHtml(d.email)}" style="color:var(--teal);text-decoration:none;font-weight:600;">${escapeHtml(d.email)}</a></td>
+                <td>${escapeHtml(d.phone || "-")}</td>
+                <td>${escapeHtml(d.company_name || "-")}</td>
+                <td>${escapeHtml(d.message || "-")}</td>
+                <td><small style="color:var(--text-muted);">${new Date(d.created_at).toLocaleDateString()}</small></td>
+                <td><span class="tag tag-new">${d.status}</span></td>
+              </tr>
+            `).join("");
+          }
+        }
+
+        // 2. Fetch Contact Inquiries
+        const contactRes = await fetch("/api/contact");
+        const contactData = await contactRes.json();
+        if (contactData.success) {
+          document.getElementById("statContacts").textContent = contactData.count;
+          const tbody = document.getElementById("contactTableBody");
+          if (contactData.data.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:24px;">No contact messages yet.</td></tr>`;
+          } else {
+            tbody.innerHTML = contactData.data.map(c => `
+              <tr>
+                <td>#${c.id}</td>
+                <td><strong>${escapeHtml(c.name)}</strong></td>
+                <td><a href="mailto:${escapeHtml(c.email)}" style="color:var(--teal);text-decoration:none;font-weight:600;">${escapeHtml(c.email)}</a></td>
+                <td>${escapeHtml(c.phone || "-")}</td>
+                <td>${escapeHtml(c.message)}</td>
+                <td><small style="color:var(--text-muted);">${new Date(c.created_at).toLocaleDateString()}</small></td>
+                <td><span class="tag tag-new">${c.status}</span></td>
+              </tr>
+            `).join("");
+          }
+        }
+      } catch (err) {
+        console.error("Dashboard error:", err);
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return "";
+      return str.replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[m]));
+    }
+
+    document.addEventListener("DOMContentLoaded", loadAllDashboardData);
+  </script>
+</body>
+</html>

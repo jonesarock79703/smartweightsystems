@@ -1,0 +1,153 @@
+{
+  "demo_requests": [
+    {
+      "id": 3,
+      "name": "John Doe",
+      "email": "john@acme.com",
+      "phone": "9876543210",
+      "company_name": "Acme Industrial",
+      "message": "Interested in automated bin monitoring for warehouse",
+      "status": "PENDING",
+      "created_at": "2026-09-15T19:56:53.232Z"
+    },
+    {
+      "id": 2,
+      "name": "John Doe",
+      "email": "john@acme.com",
+      "phone": "9876543210",
+      "company_name": "Acme Industrial",
+      "message": "Interested in automated bin monitoring for warehouse",
+      "status": "PENDING",
+      "created_at": "2026-09-11T20:44:56.550Z"
+    },
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@acme.com",
+      "phone": "9876543210",
+      "company_name": "Acme Industrial",
+      "message": "Interested in automated bin monitoring for warehouse",
+      "status": "PENDING",
+      "created_at": "2026-09-11T20:37:53.624Z"
+    }
+  ],
+  "contact_messages": [
+    {
+      "id": 7,
+      "name": "Dharineesh Dharineesh",
+      "email": "dharineesh1557@gmail.com",
+      "phone": "345546757568",
+      "message": "fkjkh,jkjjgmjk",
+      "status": "NEW",
+      "created_at": "2026-09-18T00:38:39.824Z"
+    },
+    {
+      "id": 6,
+      "name": "Jane Smith",
+      "email": "jane@techcorp.com",
+      "phone": "555-1234",
+      "message": "Would like pricing details for 50 smart bins.",
+      "status": "NEW",
+      "created_at": "2026-09-15T19:56:53.387Z"
+    },
+    {
+      "id": 5,
+      "name": "Dharineesh Dharineesh",
+      "email": "dharineesh1557@gmail.com",
+      "phone": "9879870970",
+      "message": "gsdlhkkjhlkdghlgh;kldhjg",
+      "status": "NEW",
+      "created_at": "2026-09-15T19:09:47.288Z"
+    },
+    {
+      "id": 4,
+      "name": "sheila",
+      "email": "nklsdkfj@gmail.com",
+      "phone": "6869870970",
+      "message": "jklksfhlkhaslkf",
+      "status": "NEW",
+      "created_at": "2026-09-11T21:20:14.199Z"
+    },
+    {
+      "id": 3,
+      "name": "Jane Smith",
+      "email": "jane@techcorp.com",
+      "phone": "555-1234",
+      "message": "Would like pricing details for 50 smart bins.",
+      "status": "NEW",
+      "created_at": "2026-09-11T20:44:56.600Z"
+    },
+    {
+      "id": 2,
+      "name": "DHARINEESH",
+      "email": "dharineesh@gmail.com",
+      "phone": "3787994778",
+      "message": "hi ljnelrkjg;lerktt;qkw'rkf;eoktfore",
+      "status": "NEW",
+      "created_at": "2026-09-11T20:40:44.342Z"
+    },
+    {
+      "id": 1,
+      "name": "Jane Smith",
+      "email": "jane@techcorp.com",
+      "phone": "555-1234",
+      "message": "Would like pricing details for 50 smart bins.",
+      "status": "NEW",
+      "created_at": "2026-09-11T20:37:53.650Z"
+    }
+  ],
+  "inventory_bins": [
+    {
+      "id": "BIN-001",
+      "bin_name": "Hex Head Bolts M10x50",
+      "sku": "BOLT-HEX-M10",
+      "current_weight_kg": 3.2,
+      "max_weight_kg": 30,
+      "tare_weight_kg": 0.5,
+      "unit_weight_kg": 0.048,
+      "low_stock_threshold_units": 100,
+      "stock_count": 56,
+      "status": "LOW_STOCK",
+      "last_updated": "2026-09-18T00:45:59.044Z"
+    },
+    {
+      "id": "BIN-002",
+      "bin_name": "Stainless Steel Washers 10mm",
+      "sku": "WASH-SS-10",
+      "current_weight_kg": 2.4,
+      "max_weight_kg": 25,
+      "tare_weight_kg": 0.5,
+      "unit_weight_kg": 0.009,
+      "low_stock_threshold_units": 400,
+      "stock_count": 211,
+      "status": "LOW_STOCK",
+      "last_updated": "2026-09-18T00:46:19.713Z"
+    },
+    {
+      "id": "BIN-003",
+      "bin_name": "Brass Threaded Inserts M6",
+      "sku": "INSRT-BR-M6",
+      "current_weight_kg": 18.8,
+      "max_weight_kg": 20,
+      "tare_weight_kg": 0.4,
+      "unit_weight_kg": 0.012,
+      "low_stock_threshold_units": 250,
+      "stock_count": 1533,
+      "status": "OK",
+      "last_updated": "2026-09-11T20:34:32.188Z"
+    },
+    {
+      "id": "BIN-004",
+      "bin_name": "Flange Nuts M8",
+      "sku": "NUT-FLG-M8",
+      "current_weight_kg": 0.5,
+      "max_weight_kg": 15,
+      "tare_weight_kg": 0.5,
+      "unit_weight_kg": 0.015,
+      "low_stock_threshold_units": 150,
+      "stock_count": 0,
+      "status": "EMPTY",
+      "last_updated": "2026-09-11T20:34:32.188Z"
+    }
+  ]
+}
