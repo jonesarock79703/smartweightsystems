@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartWeight Systems | Automated Inventory Intelligence</title>
-  <meta name="description" content="SmartWeight Systems uses real-time weight monitoring and automation to give businesses accurate inventory visibility, reduce wastage and improve efficiency.">
+  <title>SmartWeight Systems | Stock That Reorders Itself</title>
+  <meta name="description" content="SmartWeight Systems weighs your inventory around the clock. When a bin drops below its reorder point, your vendor receives the order automatically. No counts, no calls, no empty shelves.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -33,9 +33,21 @@
       <nav aria-label="Main Navigation">
         <ul class="nav-links" id="navLinksMenu">
           <li><a href="#home" class="nav-link active" aria-current="page">Home</a></li>
+          <li><a href="#problem" class="nav-link">Why Us</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
           <li><a href="#solution" class="nav-link">Solution</a></li>
           <li><a href="#projects" class="nav-link">Projects</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li>
+            <a href="assets/Smart-Weight-Systems-Brochure.pdf" download="Smart-Weight-Systems-Brochure.pdf" class="btn-nav-brochure" title="Download Official Product Brochure">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Brochure
+            </a>
+          </li>
           <li><a href="admin.html" class="nav-link" style="color: var(--teal); font-weight: 700;">Admin</a></li>
         </ul>
       </nav>
@@ -51,17 +63,25 @@
             <span class="badge-dot"></span>
             AUTOMATED INVENTORY INTELLIGENCE
           </div>
-          <h1>Smarter inventory.<br><span>Better decisions.</span></h1>
+          <h1>Stock that <br><span class="gradient-text">reorders itself.</span></h1>
           <p class="hero-description">
-            SmartWeight Systems uses real-time weight monitoring and automation to give businesses accurate inventory visibility, reduce wastage and improve efficiency.
+            SmartWeight Systems weighs your inventory around the clock. When a bin drops below its reorder point, your vendor receives the order automatically. <strong>No counts, no calls, no empty shelves.</strong>
           </p>
           <div class="btn-group">
             <a href="#solution" class="btn btn-primary">
-              Explore Our Solution
+              Explore Solution
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
+            </a>
+            <a href="assets/Smart-Weight-Systems-Brochure.pdf" download="Smart-Weight-Systems-Brochure.pdf" class="btn btn-brochure">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download Brochure (PDF)
             </a>
             <a href="#contact" class="btn btn-outline">
               Contact Us
@@ -69,12 +89,13 @@
           </div>
         </div>
 
-        <!-- Hero Graphic & Telemetry Card -->
+        <!-- Hero Graphic & Reorder Curve Card -->
         <div class="hero-card">
           <div class="hero-card-inner">
             <div class="hero-card-img-wrap">
               <img src="assets/smartweight-logo.jpeg" alt="SmartWeight Sensor Hardware and Intelligence">
             </div>
+            
             <div class="hero-telemetry">
               <div class="telemetry-item">
                 <div class="telemetry-label">
@@ -92,155 +113,226 @@
                   Stockout Risk
                 </div>
                 <div class="telemetry-value">0%</div>
-                <div class="telemetry-tag">Automated Alerting</div>
+                <div class="telemetry-tag">Autonomous Reordering</div>
               </div>
             </div>
+
+            <!-- Reorder Curve Visualization from Brochure -->
+            <div class="curve-chart-card">
+              <div class="curve-chart-header">
+                <span>Autonomous Reorder Cycle</span>
+                <span style="color: var(--teal); font-weight: 700;">Live Weight Curve</span>
+              </div>
+              <svg class="curve-chart-svg" viewBox="0 0 420 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Axes -->
+                <line x1="35" y1="135" x2="400" y2="135" stroke="#cbd5e1" stroke-width="1.5" />
+                <line x1="35" y1="15" x2="35" y2="135" stroke="#cbd5e1" stroke-width="1.5" />
+                <text x="5" y="25" fill="#64748b" font-size="10" font-weight="600">Full</text>
+                <text x="2" y="138" fill="#64748b" font-size="10" font-weight="600">Empty</text>
+                <text x="365" y="152" fill="#64748b" font-size="10" font-weight="600">Time →</text>
+
+                <!-- Reorder point threshold line -->
+                <line x1="35" y1="95" x2="400" y2="95" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 4" />
+                <text x="285" y="90" fill="#ea580c" font-size="10" font-weight="700">Reorder point</text>
+
+                <!-- Depletion Curve -->
+                <path d="M 40 30 Q 140 45 220 80 T 260 95" stroke="#0b2038" stroke-width="3" stroke-linecap="round" fill="none" />
+                
+                <!-- Order Trigger Point -->
+                <circle cx="260" cy="95" r="5" fill="#ea580c" />
+                <circle cx="260" cy="95" r="10" stroke="#ea580c" stroke-width="1.5" opacity="0.4" />
+                <text x="200" y="112" fill="#ea580c" font-size="9.5" font-weight="700">Order sent to vendor</text>
+
+                <!-- Replenishment Curve -->
+                <path d="M 260 95 L 305 102 Q 330 60 345 35 L 390 40" stroke="#13a99f" stroke-width="2.5" stroke-dasharray="3 3" fill="none" />
+                <text x="310" y="125" fill="#13a99f" font-size="9.5" font-weight="700">Delivery arrives</text>
+              </svg>
+              <div class="curve-chart-caption">
+                <strong>One bin, one week:</strong> The order goes out the moment weight crosses the line, before anyone notices the shelf is running low.
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 2. Why SmartWeight Systems? Section -->
-    <section class="section alt-bg" id="why-us">
+    <!-- 2. The Problem: Manual Counts Miss Things -->
+    <section class="section alt-bg" id="problem">
       <div class="container">
         <div class="section-head">
-          <div class="badge">KEY ADVANTAGES</div>
-          <h2>Why SmartWeight Systems?</h2>
-          <p>Transform static bins and shelves into an intelligent, connected inventory ecosystem that works autonomously around the clock.</p>
+          <div class="badge">THE OPERATIONAL PROBLEM</div>
+          <h2>Manual counts miss things.</h2>
+          <p>Clipboards, spreadsheets and weekly walk-arounds leave gaps. Between counts, stock runs out, rush orders cost more, and staff spend hours checking shelves instead of running the business.</p>
         </div>
 
-        <div class="features-grid">
-          <!-- Card 1 -->
-          <article class="feature-card">
-            <div class="feature-icon-wrap" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-              </svg>
-            </div>
-            <h3>Smart Weight Monitoring</h3>
-            <ul class="feature-list">
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Real-time weight tracking
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Accurate inventory visibility
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Reduced wastage
-              </li>
-            </ul>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="feature-card">
-            <div class="feature-icon-wrap" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-              </svg>
-            </div>
-            <h3>Low Stock Alerts</h3>
-            <ul class="feature-list">
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Automated alerts
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Timely reordering
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Avoid stockouts
-              </li>
-            </ul>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="feature-card">
-            <div class="feature-icon-wrap" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"></line>
-                <line x1="12" y1="20" x2="12" y2="4"></line>
-                <line x1="6" y1="20" x2="6" y2="14"></line>
-                <line x1="2" y1="20" x2="22" y2="20"></line>
-              </svg>
-            </div>
-            <h3>Inventory Insights</h3>
-            <ul class="feature-list">
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Data-driven reports
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Analytics
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Better planning
-              </li>
-            </ul>
-          </article>
-
-          <!-- Card 4 -->
-          <article class="feature-card">
-            <div class="feature-icon-wrap" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-              </svg>
-            </div>
-            <h3>Seamless Automation</h3>
-            <ul class="feature-list">
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Less manual work
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Automated processes
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                Improved efficiency
-              </li>
-            </ul>
-          </article>
+        <div class="pain-points-grid">
+          <div class="pain-point-card">
+            <div class="pain-icon">🚫</div>
+            <h3>Stockouts</h3>
+            <p>Production stops or customers wait while you chase an emergency supplier delivery.</p>
+          </div>
+          <div class="pain-point-card">
+            <div class="pain-icon">💸</div>
+            <h3>Over-ordering</h3>
+            <p>Buying "just in case" ties up critical operating cash and occupies expensive warehouse shelf space.</p>
+          </div>
+          <div class="pain-point-card">
+            <div class="pain-icon">⏳</div>
+            <h3>Lost time</h3>
+            <p>Counting, tallying, and reordering by hand wastes valuable employee hours every single week.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 3. See SmartWeight in action (Solution Showcase) -->
-    <section class="section" id="solution">
+    <!-- 3. How It Works (Five steps, all automatic) -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            HOW IT WORKS
+          </div>
+          <h2>Five steps, all automatic.</h2>
+          <p>Continuous intelligence once you set your reorder points. No counts, no calls, no manual work.</p>
+        </div>
+
+        <div class="steps-flow-grid">
+          <div class="step-card">
+            <div class="step-badge">1</div>
+            <h4>Items sit on smart weight sensors</h4>
+            <p>Load-cell platforms under each shelf, bin, or pallet measure weight continuously around the clock.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-badge">2</div>
+            <h4>Weight becomes stock count</h4>
+            <p>The system knows the weight of one unit, so it converts the reading into exactly how many units remain.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-badge">3</div>
+            <h4>You set the reorder point</h4>
+            <p>Choose the level and order quantity for each item, or let the AI engine suggest them from usage history.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-badge">4</div>
+            <h4>Low stock triggers the order</h4>
+            <p>When weight falls below the reorder point, the system sends a purchase request straight to the assigned vendor.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-badge">5</div>
+            <h4>Vendor confirms and delivers</h4>
+            <p>The vendor accepts the order, ships, and the buyer sees live status until stock is back on the shelf.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. What Each Side Gets: Buyers vs Vendors -->
+    <section class="section alt-bg" id="benefits">
+      <div class="container">
+        <div class="section-head">
+          <div class="badge">TWO-SIDED VALUE</div>
+          <h2>What each side gets.</h2>
+          <p>Transforming the vendor-buyer relationship into a streamlined, automated, and error-free ecosystem.</p>
+        </div>
+
+        <div class="comparison-grid">
+          <!-- For Buyers -->
+          <div class="comparison-card buyers">
+            <div class="comparison-header">
+              <h3>For buyers</h3>
+              <span>Purchasing, warehouse and operations teams</span>
+            </div>
+            <ul class="comparison-list">
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>Live stock levels</strong> for every item, visible on any screen.</span>
+              </li>
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>No more shelf checks</strong> or stressful end-of-week physical counts.</span>
+              </li>
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>Fewer stockouts</strong> and elimination of expensive emergency rush orders.</span>
+              </li>
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>Usage-based orders</strong> so less capital sits tied up in excess inventory.</span>
+              </li>
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>Instant alerts</strong> when consumption patterns spike or when a delivery is delayed.</span>
+              </li>
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>Auditable history</strong> of everything used, ordered, and received.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- For Vendors -->
+          <div class="comparison-card vendors">
+            <div class="comparison-header">
+              <h3>For vendors</h3>
+              <span>Suppliers, distributors, and replenishment partners</span>
+            </div>
+            <ul class="comparison-list">
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>Orders arrive instantly</strong> the moment stock is low, pre-filled with part, quantity, and delivery bay.</span>
+              </li>
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>Better demand visibility</strong> to accurately plan production batches and logistics routes.</span>
+              </li>
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>Fewer panic orders</strong> and fewer phone calls back and forth to confirm specs.</span>
+              </li>
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>Steady, predictable reorder cycles</strong> from connected client shelves.</span>
+              </li>
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>Zero part-number retyping errors</strong> across purchase order generations.</span>
+              </li>
+              <li>
+                <span class="comparison-icon">&#10003;</span>
+                <span><strong>Stronger customer relationships</strong> built on guaranteed reliable supply.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Built For Anything You Can Weigh -->
+    <section class="section" id="applications">
+      <div class="container" style="text-align: center;">
+        <div class="section-head" style="max-width: 720px; margin: 0 auto;">
+          <div class="badge">VERSATILE APPLICABILITY</div>
+          <h2>Built for anything you can weigh.</h2>
+          <p>If it is sold or used by weight or by counted unit, it can be tracked autonomously.</p>
+        </div>
+
+        <div class="category-pills">
+          <div class="category-pill">🔩 Fasteners &amp; Screws</div>
+          <div class="category-pill">⚙️ Spare Parts &amp; Tooling</div>
+          <div class="category-pill">📦 Raw Materials</div>
+          <div class="category-pill">📋 Packaging Materials</div>
+          <div class="category-pill">🧪 Chemicals &amp; Consumables</div>
+          <div class="category-pill">🥫 Food Ingredients</div>
+          <div class="category-pill">🏥 Medical Supplies</div>
+          <div class="category-pill">🏬 Retail Stock</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Carousel Showcase (See SmartWeight in action) -->
+    <section class="section alt-bg" id="solution">
       <div class="container">
         <div class="section-head">
           <div class="badge">
@@ -273,7 +365,7 @@
           </div>
         </div>
 
-        <!-- Request Demo Button Trigger -->
+        <!-- Request Demo Button Trigger & Brochure Download -->
         <div class="demo-trigger-wrap" id="demo">
           <button type="button" class="btn btn-primary" id="demoToggleBtn" style="padding: 16px 36px; font-size: 1.05rem;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -281,6 +373,14 @@
             </svg>
             Request a Demo
           </button>
+          <a href="assets/Smart-Weight-Systems-Brochure.pdf" download="Smart-Weight-Systems-Brochure.pdf" class="btn btn-brochure" style="padding: 16px 32px; font-size: 1.05rem; margin-left: 12px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Brochure (PDF)
+          </a>
         </div>
 
         <!-- Demo Request Form Panel -->
@@ -288,8 +388,8 @@
           <div class="form-card">
             <div class="form-header">
               <div class="badge">TAILORED EVALUATION</div>
-              <h2>Request a Demo</h2>
-              <p>Tell us how SmartWeight can help your business.</p>
+              <h2>Request a Live Pilot</h2>
+              <p>Tell us how SmartWeight can help optimize your facility's inventory.</p>
             </div>
 
             <form id="demoForm" novalidate>
@@ -308,7 +408,7 @@
 
                 <div class="form-field">
                   <label for="demoPhone">Phone Number <span class="required-star">*</span></label>
-                  <input type="tel" id="demoPhone" name="phone" placeholder="Phone number" required>
+                  <input type="tel" id="demoPhone" name="phone" placeholder="+91 Phone number" required>
                   <span class="field-error"></span>
                 </div>
 
@@ -320,7 +420,7 @@
 
                 <div class="form-field full-width">
                   <label for="demoMessage">Requirement / Message</label>
-                  <textarea id="demoMessage" name="message" placeholder="Tell us about your requirement"></textarea>
+                  <textarea id="demoMessage" name="message" placeholder="Tell us about your inventory requirement"></textarea>
                   <span class="field-error"></span>
                 </div>
 
@@ -340,7 +440,66 @@
       </div>
     </section>
 
-    <!-- 4. Projects & Tied-up Companies Section -->
+    <!-- 7. At A Glance: Technical Specs from Brochure -->
+    <section class="section" id="specs">
+      <div class="container">
+        <div class="section-head">
+          <div class="badge">SPECIFICATIONS</div>
+          <h2>At a glance.</h2>
+          <p>Industrial grade engineering built for warehouses, supply chains, and manufacturing facilities.</p>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Sensing</span>
+            <span class="spec-val">Load-cell weighing platforms for shelves, bins, and pallets</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Connectivity</span>
+            <span class="spec-val">Wi-Fi / Ethernet / Cellular IoT telemetry modules</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Ordering</span>
+            <span class="spec-val">Automatic purchase orders dispatched via Email, Portal, API, or EDI</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Software</span>
+            <span class="spec-val">Cloud dashboard with live stock alerts, consumption history &amp; reorder rules</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Integrations</span>
+            <span class="spec-val">ERP, accounting, warehouse management &amp; purchasing systems</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Capacity &amp; Accuracy</span>
+            <span class="spec-val">Gram-level precision up to high-capacity heavy pallet loads</span>
+          </div>
+        </div>
+
+        <!-- High-Impact Brochure Download Banner -->
+        <div class="brochure-cta-banner">
+          <div class="brochure-cta-content">
+            <h2>Download our complete product brochure.</h2>
+            <p>Get the full technical breakdown, operational workflow diagrams, and enterprise deployment guidelines in a compact 4-page PDF.</p>
+          </div>
+          <div class="brochure-cta-actions">
+            <a href="assets/Smart-Weight-Systems-Brochure.pdf" download="Smart-Weight-Systems-Brochure.pdf" class="btn btn-white" style="padding: 16px 32px; font-size: 1.05rem; font-weight: 800;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download Brochure (PDF)
+            </a>
+            <a href="#demo" class="btn btn-outline" style="border-color: rgba(255,255,255,0.4); color: #ffffff; background: transparent;">
+              Request Live Bench Test
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Projects & Tied-up Companies Section -->
     <section class="section alt-bg" id="projects">
       <div class="container">
         <div class="section-head">
@@ -352,7 +511,6 @@
           <p>Practical inventory automation built around visibility, alerts and data-driven planning.</p>
         </div>
 
-        <!-- Project Cards -->
         <div class="projects-grid">
           <article class="project-card">
             <span class="project-card-badge">REAL-TIME SENSING MATRIX</span>
@@ -498,7 +656,7 @@
       </div>
     </section>
 
-    <!-- 5. Contact Section -->
+    <!-- 9. Contact Section -->
     <section class="section" id="contact">
       <div class="container">
         <div class="section-head">
@@ -507,7 +665,7 @@
             GET IN TOUCH
           </div>
           <h2>Contact SmartWeight Systems</h2>
-          <p>Have a requirement or want to learn more? Reach out to discuss automated inventory intelligence for your business.</p>
+          <p>Book a demo and we will set up a live bin, so you can watch a low-stock order reach your vendor.</p>
         </div>
 
         <div class="contact-layout">
@@ -541,7 +699,7 @@
                 <div class="contact-item-details">
                   <span class="contact-item-label">Phone</span>
                   <span class="contact-item-value">
-                    <a href="tel:6382368791">6382368791</a>
+                    <a href="tel:6369108157">+91 6369108157</a>
                   </span>
                 </div>
               </div>
@@ -557,7 +715,24 @@
                 <div class="contact-item-details">
                   <span class="contact-item-label">Email</span>
                   <span class="contact-item-value">
-                    <a href="mailto:jonesstock97913@gmail.com">jonesstock97913@gmail.com</a>
+                    <a href="mailto:jonesarock79703@gmail.com">jonesarock79703@gmail.com</a>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Web -->
+              <div class="contact-item">
+                <div class="contact-item-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                </div>
+                <div class="contact-item-details">
+                  <span class="contact-item-label">Official Website</span>
+                  <span class="contact-item-value">
+                    <a href="https://smartweightsystems.in" target="_blank" rel="noopener">smartweightsystems.in</a>
                   </span>
                 </div>
               </div>
@@ -577,13 +752,13 @@
               </div>
             </div>
 
-            <!-- Location / Map-style Card -->
+            <!-- Location Badge -->
             <div class="location-map-card">
               <div class="location-badge">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
                 </svg>
-                Location &bull; Salem – 636009
+                Salem Operations Hub
               </div>
               <div class="location-title">Salem – 636009</div>
               <p class="location-subtitle">Opposite to Darling showroom, New Busstand</p>
@@ -600,37 +775,32 @@
 
             <form id="contactForm" novalidate>
               <div class="form-grid">
-                <!-- Name -->
                 <div class="form-field">
                   <label for="contactName">Your Name <span class="required-star">*</span></label>
                   <input type="text" id="contactName" name="name" placeholder="Your name" required>
                   <span class="field-error"></span>
                 </div>
 
-                <!-- Email -->
                 <div class="form-field">
                   <label for="contactEmail">Your Email <span class="required-star">*</span></label>
                   <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required>
                   <span class="field-error"></span>
                 </div>
 
-                <!-- Phone -->
                 <div class="form-field full-width">
                   <label for="contactPhone">Phone Number</label>
-                  <input type="tel" id="contactPhone" name="phone" placeholder="Phone number">
+                  <input type="tel" id="contactPhone" name="phone" placeholder="+91 Phone number">
                   <span class="field-error"></span>
                 </div>
 
-                <!-- Message -->
                 <div class="form-field full-width">
                   <label for="contactMessage">Message <span class="required-star">*</span></label>
-                  <textarea id="contactMessage" name="message" placeholder="Your message" required></textarea>
+                  <textarea id="contactMessage" name="message" placeholder="Your message or pilot requirement" required></textarea>
                   <span class="field-error"></span>
                 </div>
 
-                <!-- Submit Button -->
                 <div class="form-field full-width" style="margin-top: 10px;">
-                  <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px;">
+                  <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">
                     Send Message
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -640,27 +810,6 @@
                 </div>
               </div>
             </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Strong CTA Section -->
-    <section class="section" style="padding-top: 0;">
-      <div class="container">
-        <div class="cta-banner">
-          <div class="cta-content">
-            <h2>Ready to make inventory smarter?</h2>
-            <p>SmartWeight Systems uses real-time weight monitoring and automation to give businesses accurate inventory visibility, reduce wastage and improve efficiency.</p>
-          </div>
-          <div class="cta-action">
-            <a href="#demo" class="btn btn-white" id="ctaDemoBtn">
-              Request a Demo
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
           </div>
         </div>
       </div>
@@ -675,17 +824,29 @@
           <h3>SmartWeight Systems</h3>
           <p class="sub">Automated Inventory Intelligence</p>
           <p class="desc">
-            Empowering forward-thinking enterprises with precision weight telemetry, stock forecasting, and automated reorder triggers.
+            Stock that reorders itself. Empowering forward-thinking enterprises with precision weight telemetry, stock forecasting, and automated vendor order triggers.
           </p>
+          <div style="margin-top: 18px;">
+            <a href="assets/Smart-Weight-Systems-Brochure.pdf" download="Smart-Weight-Systems-Brochure.pdf" class="btn btn-brochure" style="padding: 10px 20px; font-size: 0.88rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download Brochure (PDF)
+            </a>
+          </div>
         </div>
 
         <div class="footer-col">
           <h4>Navigation</h4>
           <ul class="footer-nav">
             <li><a href="#home">Home</a></li>
-            <li><a href="#solution">Solution</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#solution">Solution &amp; Carousel</a></li>
+            <li><a href="#specs">Specifications</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="admin.html">Admin Console</a></li>
           </ul>
         </div>
 
@@ -694,8 +855,9 @@
           <ul class="footer-contact-info">
             <li>Stephen Jones C, CEO</li>
             <li>Opposite to Darling showroom, New Busstand, Salem – 636009</li>
-            <li><a href="tel:6382368791" style="color: #94a3b8;">+91 6382368791</a></li>
-            <li><a href="mailto:jonesstock97913@gmail.com" style="color: #94a3b8;">jonesstock97913@gmail.com</a></li>
+            <li><a href="tel:6369108157" style="color: #94a3b8;">+91 6369108157</a></li>
+            <li><a href="mailto:jonesarock79703@gmail.com" style="color: #94a3b8;">jonesarock79703@gmail.com</a></li>
+            <li><a href="https://smartweightsystems.in" style="color: #13beae;">smartweightsystems.in</a></li>
           </ul>
         </div>
       </div>
