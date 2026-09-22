@@ -151,8 +151,8 @@ function serveStatic(req, res, filePath) {
   let normalizedPath = filePath === "/" ? "index.html" : filePath.replace(/^\/+/, "");
 
   const searchDirs = [
+    __dirname,
     path.join(__dirname, "public"),
-    path.resolve(__dirname, ".."),
   ];
 
   for (const dir of searchDirs) {
