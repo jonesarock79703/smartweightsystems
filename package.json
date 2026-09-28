@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node smartweight-backend/server.js"
+    "start": "node server.js"
   },
   "dependencies": {
-    "nodemailer": "^6.9.13"
+    "nodemailer": "^6.10.1"
   }
 }

@@ -7,29 +7,49 @@
   <meta name="description" content="Explore SmartWeight Systems IoT weight monitoring solution and request a live demonstration.">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="solution-page">
 
-<div class="bg-mesh"></div>
+<div class="bg-mesh bg-mesh-solution"></div>
 
 <header class="navbar">
   <div class="container nav-inner">
-    <a class="brand" href="index.html">
-      <div class="brand-logo-wrap">
-        <img src="assets/smartweight-logo.jpeg" alt="SmartWeight Systems Logo">
+    <a class="brand" href="index.html#home" aria-label="SmartWeight Systems Home">
+      <div class="brand-logo-frame">
+        <img src="assets/smartweight-icon.png" alt="SmartWeight Systems Logo">
       </div>
-      <div class="brand-text">
-        <strong>SmartWeight Systems</strong>
-        <small>Automated Inventory Intelligence</small>
+      <div class="brand-meta">
+        <span class="brand-name">SmartWeight Systems</span>
+        <span class="brand-subtitle">Automated Inventory Intelligence</span>
       </div>
     </a>
-    <button class="menu" aria-label="Toggle navigation">☰</button>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a class="active" href="solution.html">Solution</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-      <a href="assets/Smart-Weight-Systems-Brochure.pdf" download="Smart-Weight-Systems-Brochure.pdf" class="btn-nav-brochure">📥 Brochure</a>
-      <a class="nav-admin-btn" href="admin.html">Admin</a>
+
+    <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+      <div class="hamburger-box">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links" id="navLinksMenu">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#problem" class="nav-link">Why Us</a></li>
+        <li><a href="index.html#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="solution.html" class="nav-link active" aria-current="page">Solution</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li>
+          <a href="assets/Smart-Weight-Systems-Brochure.pdf" download="Smart-Weight-Systems-Brochure.pdf" class="btn-nav-brochure" title="Download Official Product Brochure">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Brochure
+          </a>
+        </li>
+      </ul>
     </nav>
   </div>
 </header>
@@ -38,7 +58,7 @@
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <div class="badge-glow" style="margin-bottom:12px;">OUR INDUSTRIAL SOLUTION</div>
+        <div class="badge-glow">OUR INDUSTRIAL SOLUTION</div>
         <h2>See SmartWeight in Action</h2>
         <p>Continuous IoT scale telemetry gives warehouse and procurement managers live, effortless visibility.</p>
       </div>
@@ -46,13 +66,25 @@
       <div class="carousel-wrap">
         <div class="carousel">
           <div class="slide active">
-            <img src="assets/smartweight-logo.jpeg" alt="SmartWeight Systems Logo">
+            <img src="assets/carousel-iot-scales.jpg" alt="SmartWeight IoT Load-Cell Scale Platform under inventory bins">
+            <div class="slide-caption-overlay">
+              <h4>Continuous Load-Cell Bins</h4>
+              <p>Sub-gram precision IoT scale platforms measure inventory continuously around the clock.</p>
+            </div>
           </div>
           <div class="slide">
-            <img src="assets/smartweight-features.png" alt="SmartWeight Systems features">
+            <img src="assets/carousel-analytics-dashboard.jpg" alt="SmartWeight Operations Telemetry & Reorder Dashboard">
+            <div class="slide-caption-overlay">
+              <h4>Real-Time Telemetry & Predictive Curves</h4>
+              <p>Automated replenishment curves trigger purchase orders before anyone notices shelves running low.</p>
+            </div>
           </div>
           <div class="slide">
-            <img src="assets/smartweight-contact.png" alt="SmartWeight Systems contact card">
+            <img src="assets/carousel-automated-delivery.jpg" alt="Autonomous Supplier Replenishment Logistics">
+            <div class="slide-caption-overlay">
+              <h4>Autonomous Supplier Replenishment</h4>
+              <p>Fast fulfillment direct to warehouse dock with zero retyping errors and guaranteed reliability.</p>
+            </div>
           </div>
         </div>
         <button class="arrow prev" onclick="changeSlide(-1)" aria-label="Previous slide">‹</button>
@@ -64,7 +96,7 @@
         </div>
       </div>
 
-      <div style="text-align:center;margin-top:32px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
+      <div style="text-align:center;margin-top:18px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
         <button class="btn btn-primary" id="demoBtn">
           <span>Request a Demo</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
@@ -77,7 +109,7 @@
 
       <div class="form-panel" id="demoForm">
         <h2>Request a Live Pilot</h2>
-        <p style="color:#64748b;margin:6px 0 24px;">Tell us how SmartWeight can help optimize your facility's inventory.</p>
+        <p style="color:#94a3b8;margin:6px 0 16px;">Tell us how SmartWeight can help optimize your facility's inventory.</p>
         <form id="demoRequestForm">
           <div class="form-grid">
             <div class="field">

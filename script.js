@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (autoSlideTimer) clearInterval(autoSlideTimer);
     autoSlideTimer = setInterval(() => {
       changeSlide(1);
-    }, 2000);
+    }, 1300);
   }
 
   function resetAutoSlide() {
@@ -312,6 +312,127 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
+  }
+
+  // ==========================================
+  // 7. INTERACTIVE HARDWARE SCALE SIMULATOR
+  // ==========================================
+  const weightSlider = document.getElementById("weightSimSlider");
+  const simWeightDisplay = document.getElementById("simWeightDisplay");
+  const simCountDisplay = document.getElementById("simCountDisplay");
+  const simSliderVal = document.getElementById("simSliderVal");
+  const simAlertBanner = document.getElementById("simAlertBanner");
+  const simAlertText = document.getElementById("simAlertText");
+  const simStatusBadge = document.getElementById("simStatusBadge");
+  const presetBtns = document.querySelectorAll(".sim-preset-btn");
+
+  if (weightSlider && simWeightDisplay && simCountDisplay && simSliderVal) {
+    const UNIT_WEIGHT_KG = 0.049; // ~49g per industrial fastener unit
+
+    function updateScaleTelemetry(weight) {
+      const units = Math.max(0, Math.round(weight / UNIT_WEIGHT_KG));
+
+      // Update telemetry readouts
+      weightSlider.value = weight;
+      simSliderVal.textContent = weight.toFixed(1) + " kg";
+      simWeightDisplay.innerHTML = `${weight.toFixed(2)} <small>kg</small>`;
+      simCountDisplay.innerHTML = `${units} <small>units</small>`;
+
+      // Threshold trigger at 10.0 kg
+      if (weight <= 10.0) {
+        if (simAlertBanner) {
+          simAlertBanner.classList.add("triggered");
+          if (simAlertText) {
+            simAlertText.innerHTML = `⚠️ <strong>LOW STOCK THRESHOLD!</strong> Auto-PO #PO-9482 dispatched to Vendor (500 units).`;
+          }
+        }
+        if (simStatusBadge) {
+          simStatusBadge.textContent = "DISPATCHING PO";
+          simStatusBadge.style.color = "#f87171";
+          simStatusBadge.style.borderColor = "rgba(248, 113, 113, 0.4)";
+          simStatusBadge.style.background = "rgba(239, 68, 68, 0.2)";
+        }
+      } else {
+        if (simAlertBanner) {
+          simAlertBanner.classList.remove("triggered");
+          if (simAlertText) {
+            simAlertText.innerHTML = `⚖️ Bin Level Optimal (${units} units). Continuous sub-gram load cells active.`;
+          }
+        }
+        if (simStatusBadge) {
+          simStatusBadge.textContent = "ONLINE";
+          simStatusBadge.style.color = "#34d399";
+          simStatusBadge.style.borderColor = "rgba(52, 211, 153, 0.3)";
+          simStatusBadge.style.background = "rgba(16, 185, 129, 0.15)";
+        }
+      }
+    }
+
+    weightSlider.addEventListener("input", (e) => {
+      updateScaleTelemetry(parseFloat(e.target.value));
+    });
+
+    presetBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetWeight = parseFloat(btn.getAttribute("data-weight"));
+        if (!isNaN(targetWeight)) {
+          updateScaleTelemetry(targetWeight);
+        }
+      });
+    });
+  }
+
+  // ==========================================
+  // 8. INTERACTIVE ROI & EFFICIENCY CALCULATOR
+  // ==========================================
+  const roiBinsSlider = document.getElementById("roiBinsSlider");
+  const roiHoursSlider = document.getElementById("roiHoursSlider");
+  const roiRateSlider = document.getElementById("roiRateSlider");
+  const roiBinsBubble = document.getElementById("roiBinsBubble");
+  const roiHoursBubble = document.getElementById("roiHoursBubble");
+  const roiRateBubble = document.getElementById("roiRateBubble");
+  const roiLaborSavedVal = document.getElementById("roiLaborSavedVal");
+  const roiHoursSavedVal = document.getElementById("roiHoursSavedVal");
+  const roiPaybackVal = document.getElementById("roiPaybackVal");
+
+  function calculateROI() {
+    if (!roiBinsSlider || !roiHoursSlider || !roiRateSlider) return;
+
+    const bins = parseInt(roiBinsSlider.value, 10);
+    const weeklyHours = parseFloat(roiHoursSlider.value);
+    const hourlyRate = parseFloat(roiRateSlider.value);
+
+    // Update bubbles
+    if (roiBinsBubble) roiBinsBubble.textContent = `${bins} Bins`;
+    if (roiHoursBubble) roiHoursBubble.textContent = `${weeklyHours} hrs / wk`;
+    if (roiRateBubble) roiRateBubble.textContent = `$${hourlyRate} / hr`;
+
+    // Annual Calculations
+    const annualHoursSaved = Math.round(weeklyHours * 52);
+    const annualLaborSavings = Math.round(annualHoursSaved * hourlyRate);
+
+    // Estimated Payback Period in months
+    // Approx hardware installation cost = $110 per smart scale bin
+    const estimatedHardwareCapex = bins * 110;
+    const monthlySavings = Math.max(1, annualLaborSavings / 12);
+    const paybackMonths = Math.max(1.2, Math.min(12, (estimatedHardwareCapex / monthlySavings))).toFixed(1);
+
+    if (roiLaborSavedVal) {
+      roiLaborSavedVal.textContent = `$${annualLaborSavings.toLocaleString()}`;
+    }
+    if (roiHoursSavedVal) {
+      roiHoursSavedVal.innerHTML = `${annualHoursSaved.toLocaleString()} <small>hrs</small>`;
+    }
+    if (roiPaybackVal) {
+      roiPaybackVal.innerHTML = `${paybackMonths} <small>mo</small>`;
+    }
+  }
+
+  if (roiBinsSlider && roiHoursSlider && roiRateSlider) {
+    roiBinsSlider.addEventListener("input", calculateROI);
+    roiHoursSlider.addEventListener("input", calculateROI);
+    roiRateSlider.addEventListener("input", calculateROI);
+    calculateROI();
   }
 
 });

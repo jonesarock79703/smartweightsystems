@@ -14,7 +14,7 @@
     <div class="container nav-inner">
       <a href="#home" class="brand" aria-label="SmartWeight Systems Home">
         <div class="brand-logo-frame">
-          <img src="assets/smartweight-logo.jpeg" alt="SmartWeight Systems Logo">
+          <img src="assets/smartweight-icon.png" alt="SmartWeight Systems Logo">
         </div>
         <div class="brand-meta">
           <span class="brand-name">SmartWeight Systems</span>
@@ -48,7 +48,6 @@
               Brochure
             </a>
           </li>
-          <li><a href="admin.html" class="nav-link" style="color: var(--teal); font-weight: 700;">Admin</a></li>
         </ul>
       </nav>
     </div>
@@ -57,6 +56,7 @@
   <main>
     <!-- 1. Hero Section -->
     <section class="hero" id="home">
+      <div class="hero-grid-pattern"></div>
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="badge">
@@ -87,15 +87,116 @@
               Contact Us
             </a>
           </div>
+
+          <!-- Enterprise Integration Bar -->
+          <div class="hero-integrations-bar">
+            <span class="integrations-label">Plug &amp; Play Enterprise Compatibility:</span>
+            <div class="integration-pills">
+              <span class="int-pill"><span class="int-dot"></span>SAP ERP</span>
+              <span class="int-pill"><span class="int-dot"></span>Oracle NetSuite</span>
+              <span class="int-pill"><span class="int-dot"></span>Microsoft D365</span>
+              <span class="int-pill"><span class="int-dot"></span>Automated PO / EDI</span>
+              <span class="int-pill"><span class="int-dot"></span>REST Webhooks</span>
+            </div>
+          </div>
+
+          <!-- Reorder Curve Visualization from Brochure -->
+          <div class="curve-chart-card">
+            <div class="curve-chart-header">
+              <span>Autonomous Reorder Cycle</span>
+              <span style="color: #38bdf8; font-weight: 700;">Live Weight Curve</span>
+            </div>
+            <svg class="curve-chart-svg" viewBox="0 0 420 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Axes -->
+              <line x1="35" y1="135" x2="400" y2="135" stroke="#475569" stroke-width="1.5" />
+              <line x1="35" y1="15" x2="35" y2="135" stroke="#475569" stroke-width="1.5" />
+              <text x="5" y="25" fill="#94a3b8" font-size="10" font-weight="600">Full</text>
+              <text x="2" y="138" fill="#94a3b8" font-size="10" font-weight="600">Empty</text>
+              <text x="365" y="152" fill="#94a3b8" font-size="10" font-weight="600">Time →</text>
+
+              <!-- Reorder point threshold line -->
+              <line x1="35" y1="95" x2="400" y2="95" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 4" />
+              <text x="285" y="90" fill="#f97316" font-size="10" font-weight="700">Reorder point</text>
+
+              <!-- Depletion Curve -->
+              <path d="M 40 30 Q 140 45 220 80 T 260 95" stroke="#e2e8f0" stroke-width="3" stroke-linecap="round" fill="none" />
+              
+              <!-- Order Trigger Point -->
+              <circle cx="260" cy="95" r="5" fill="#ea580c" />
+              <circle cx="260" cy="95" r="10" stroke="#ea580c" stroke-width="1.5" opacity="0.4" />
+              <text x="200" y="112" fill="#f97316" font-size="9.5" font-weight="700">Order sent to vendor</text>
+
+              <!-- Replenishment Curve -->
+              <path d="M 260 95 L 305 102 Q 330 60 345 35 L 390 40" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="3 3" fill="none" />
+              <text x="310" y="125" fill="#38bdf8" font-size="9.5" font-weight="700">Delivery arrives</text>
+            </svg>
+            <div class="curve-chart-caption">
+              <strong>One bin, one week:</strong> Order dispatches the moment weight crosses the threshold, before stock runs low.
+            </div>
+          </div>
         </div>
 
         <!-- Hero Graphic & Reorder Curve Card -->
         <div class="hero-card">
           <div class="hero-card-inner">
-            <div class="hero-card-img-wrap">
-              <img src="assets/smartweight-logo.jpeg" alt="SmartWeight Sensor Hardware and Intelligence">
+            <div class="hero-hardware-showcase">
+              <div class="hardware-top-bar">
+                <span class="live-dot-pulse"></span>
+                <span class="hardware-title">IoT Smart Scale Platform · BIN-001</span>
+                <span class="hardware-status-badge" id="simStatusBadge">ONLINE</span>
+              </div>
+              <div class="hero-card-img-wrap">
+                <img src="assets/hero-smart-scale.jpg" alt="SmartWeight Industrial IoT Smart Scale Platform with digital weight display" class="hero-scale-img">
+                
+                <!-- Floating Real-Time Telemetry Badges -->
+                <div class="floating-telemetry-badge badge-top-right">
+                  <span class="badge-pulse-dot"></span>
+                  <span><strong>Sub-Gram Matrix</strong> · ±0.05g</span>
+                </div>
+                <div class="floating-telemetry-badge badge-bottom-left">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color: var(--teal-light);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span><strong>ERP / Vendor Sync</strong> · Active</span>
+                </div>
+
+                <div class="scale-live-overlay">
+                  <div class="overlay-metric">
+                    <span class="metric-label">WEIGHT READING</span>
+                    <span class="metric-val" id="simWeightDisplay">24.50 <small>kg</small></span>
+                  </div>
+                  <div class="overlay-metric">
+                    <span class="metric-label">PIECE COUNT</span>
+                    <span class="metric-val" id="simCountDisplay">500 <small>units</small></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Simulator Slider -->
+              <div class="scale-sim-controller">
+                <div class="sim-ctrl-header">
+                  <label for="weightSimSlider">
+                    <span>⚡ Interactive Live Scale Simulation:</span>
+                    <strong>Drag slider or click presets to test autonomous reorder</strong>
+                  </label>
+                  <span class="sim-slider-val" id="simSliderVal">24.5 kg</span>
+                </div>
+                <input type="range" id="weightSimSlider" min="2" max="30" step="0.5" value="24.5" class="sim-slider">
+                
+                <!-- Quick Preset Scenarios -->
+                <div class="sim-presets">
+                  <span class="sim-presets-label">Test Scenarios:</span>
+                  <button type="button" class="sim-preset-btn" data-weight="28.0">Full (28kg)</button>
+                  <button type="button" class="sim-preset-btn" data-weight="16.5">Optimal (16.5kg)</button>
+                  <button type="button" class="sim-preset-btn warn" data-weight="8.5">Reorder Point (8.5kg ⚠️)</button>
+                  <button type="button" class="sim-preset-btn crit" data-weight="2.5">Empty (2.5kg 🚨)</button>
+                </div>
+
+                <div class="sim-alert-banner" id="simAlertBanner">
+                  <span class="sim-alert-icon">⚖️</span>
+                  <span class="sim-alert-text" id="simAlertText">Bin Level Optimal (500 units). Load cells active.</span>
+                </div>
+              </div>
             </div>
-            
+
             <div class="hero-telemetry">
               <div class="telemetry-item">
                 <div class="telemetry-label">
@@ -103,7 +204,7 @@
                   Sensor Matrix
                 </div>
                 <div class="telemetry-value">99.8%</div>
-                <div class="telemetry-tag">Live Weight Precision</div>
+                <div class="telemetry-tag">Sub-Gram Weight Precision</div>
               </div>
               <div class="telemetry-item">
                 <div class="telemetry-label">
@@ -113,45 +214,36 @@
                   Stockout Risk
                 </div>
                 <div class="telemetry-value">0%</div>
-                <div class="telemetry-tag">Autonomous Reordering</div>
+                <div class="telemetry-tag">Autonomous Vendor PO</div>
               </div>
             </div>
 
-            <!-- Reorder Curve Visualization from Brochure -->
-            <div class="curve-chart-card">
-              <div class="curve-chart-header">
-                <span>Autonomous Reorder Cycle</span>
-                <span style="color: var(--teal); font-weight: 700;">Live Weight Curve</span>
-              </div>
-              <svg class="curve-chart-svg" viewBox="0 0 420 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Axes -->
-                <line x1="35" y1="135" x2="400" y2="135" stroke="#cbd5e1" stroke-width="1.5" />
-                <line x1="35" y1="15" x2="35" y2="135" stroke="#cbd5e1" stroke-width="1.5" />
-                <text x="5" y="25" fill="#64748b" font-size="10" font-weight="600">Full</text>
-                <text x="2" y="138" fill="#64748b" font-size="10" font-weight="600">Empty</text>
-                <text x="365" y="152" fill="#64748b" font-size="10" font-weight="600">Time →</text>
+          </div>
+        </div>
+      </div>
 
-                <!-- Reorder point threshold line -->
-                <line x1="35" y1="95" x2="400" y2="95" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 4" />
-                <text x="285" y="90" fill="#ea580c" font-size="10" font-weight="700">Reorder point</text>
-
-                <!-- Depletion Curve -->
-                <path d="M 40 30 Q 140 45 220 80 T 260 95" stroke="#0b2038" stroke-width="3" stroke-linecap="round" fill="none" />
-                
-                <!-- Order Trigger Point -->
-                <circle cx="260" cy="95" r="5" fill="#ea580c" />
-                <circle cx="260" cy="95" r="10" stroke="#ea580c" stroke-width="1.5" opacity="0.4" />
-                <text x="200" y="112" fill="#ea580c" font-size="9.5" font-weight="700">Order sent to vendor</text>
-
-                <!-- Replenishment Curve -->
-                <path d="M 260 95 L 305 102 Q 330 60 345 35 L 390 40" stroke="#13a99f" stroke-width="2.5" stroke-dasharray="3 3" fill="none" />
-                <text x="310" y="125" fill="#13a99f" font-size="9.5" font-weight="700">Delivery arrives</text>
-              </svg>
-              <div class="curve-chart-caption">
-                <strong>One bin, one week:</strong> The order goes out the moment weight crosses the line, before anyone notices the shelf is running low.
-              </div>
-            </div>
-
+      <!-- High-Impact Trust & Metrics Bar -->
+      <div class="hero-trust-bar">
+        <div class="container hero-trust-grid">
+          <div class="trust-stat-card">
+            <div class="trust-stat-num">99.8%</div>
+            <div class="trust-stat-label">Weight-to-Unit Accuracy</div>
+            <div class="trust-stat-sub">Precision down to individual fastener grams</div>
+          </div>
+          <div class="trust-stat-card">
+            <div class="trust-stat-num">0 sec</div>
+            <div class="trust-stat-label">Manual Counting Needed</div>
+            <div class="trust-stat-sub">Eliminates shelf checking & clipboard tallying</div>
+          </div>
+          <div class="trust-stat-card">
+            <div class="trust-stat-num">100%</div>
+            <div class="trust-stat-label">Stockout Elimination Rate</div>
+            <div class="trust-stat-sub">Automated PO sent before bins run empty</div>
+          </div>
+          <div class="trust-stat-card">
+            <div class="trust-stat-num">&lt; 0.5s</div>
+            <div class="trust-stat-label">Vendor Dispatch Speed</div>
+            <div class="trust-stat-sub">Direct email & API replenishment tickets</div>
           </div>
         </div>
       </div>
@@ -168,23 +260,37 @@
 
         <div class="pain-points-grid">
           <div class="pain-point-card">
-            <div class="pain-icon">🚫</div>
-            <h3>Stockouts</h3>
-            <p>Production stops or customers wait while you chase an emergency supplier delivery.</p>
+            <div class="pain-card-image-wrap">
+              <img src="assets/problem-stockouts.jpg" alt="Empty warehouse shelves representing stockouts" class="pain-card-img" loading="lazy">
+            </div>
+            <div class="pain-card-body">
+              <h3>Stockouts</h3>
+              <p>Production stops or customers wait while you chase an emergency supplier delivery.</p>
+            </div>
           </div>
           <div class="pain-point-card">
-            <div class="pain-icon">💸</div>
-            <h3>Over-ordering</h3>
-            <p>Buying "just in case" ties up critical operating cash and occupies expensive warehouse shelf space.</p>
+            <div class="pain-card-image-wrap">
+              <img src="assets/problem-overstock.jpg" alt="Overcrowded warehouse storage boxes illustrating overstocking" class="pain-card-img" loading="lazy">
+            </div>
+            <div class="pain-card-body">
+              <h3>Over-ordering</h3>
+              <p>Buying "just in case" ties up critical operating cash and occupies expensive warehouse shelf space.</p>
+            </div>
           </div>
           <div class="pain-point-card">
-            <div class="pain-icon">⏳</div>
-            <h3>Lost time</h3>
-            <p>Counting, tallying, and reordering by hand wastes valuable employee hours every single week.</p>
+            <div class="pain-card-image-wrap">
+              <img src="assets/problem-manual-counting.jpg" alt="Warehouse manager manually counting inventory with clipboard" class="pain-card-img" loading="lazy">
+            </div>
+            <div class="pain-card-body">
+              <h3>Lost time</h3>
+              <p>Counting, tallying, and reordering by hand wastes valuable employee hours every single week.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
+
 
     <!-- 3. How It Works (Five steps, all automatic) -->
     <section class="section" id="how-it-works">
@@ -200,27 +306,32 @@
 
         <div class="steps-flow-grid">
           <div class="step-card">
-            <div class="step-badge">1</div>
+            <span class="step-header-tag">IoT Sensing Matrix</span>
+            <div class="step-badge">01</div>
             <h4>Items sit on smart weight sensors</h4>
             <p>Load-cell platforms under each shelf, bin, or pallet measure weight continuously around the clock.</p>
           </div>
           <div class="step-card">
-            <div class="step-badge">2</div>
+            <span class="step-header-tag">Sub-Gram Precision</span>
+            <div class="step-badge">02</div>
             <h4>Weight becomes stock count</h4>
             <p>The system knows the weight of one unit, so it converts the reading into exactly how many units remain.</p>
           </div>
           <div class="step-card">
-            <div class="step-badge">3</div>
+            <span class="step-header-tag">Autonomous Thresholds</span>
+            <div class="step-badge">03</div>
             <h4>You set the reorder point</h4>
             <p>Choose the level and order quantity for each item, or let the AI engine suggest them from usage history.</p>
           </div>
           <div class="step-card">
-            <div class="step-badge">4</div>
+            <span class="step-header-tag">Instant Vendor PO</span>
+            <div class="step-badge">04</div>
             <h4>Low stock triggers the order</h4>
             <p>When weight falls below the reorder point, the system sends a purchase request straight to the assigned vendor.</p>
           </div>
           <div class="step-card">
-            <div class="step-badge">5</div>
+            <span class="step-header-tag">Dock-to-Bin Delivery</span>
+            <div class="step-badge">05</div>
             <h4>Vendor confirms and delivers</h4>
             <p>The vendor accepts the order, ships, and the buyer sees live status until stock is back on the shelf.</p>
           </div>
@@ -246,27 +357,27 @@
             </div>
             <ul class="comparison-list">
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>Live stock levels</strong> for every item, visible on any screen.</span>
               </li>
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>No more shelf checks</strong> or stressful end-of-week physical counts.</span>
               </li>
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>Fewer stockouts</strong> and elimination of expensive emergency rush orders.</span>
               </li>
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>Usage-based orders</strong> so less capital sits tied up in excess inventory.</span>
               </li>
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>Instant alerts</strong> when consumption patterns spike or when a delivery is delayed.</span>
               </li>
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>Auditable history</strong> of everything used, ordered, and received.</span>
               </li>
             </ul>
@@ -280,27 +391,27 @@
             </div>
             <ul class="comparison-list">
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>Orders arrive instantly</strong> the moment stock is low, pre-filled with part, quantity, and delivery bay.</span>
               </li>
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>Better demand visibility</strong> to accurately plan production batches and logistics routes.</span>
               </li>
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>Fewer panic orders</strong> and fewer phone calls back and forth to confirm specs.</span>
               </li>
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>Steady, predictable reorder cycles</strong> from connected client shelves.</span>
               </li>
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>Zero part-number retyping errors</strong> across purchase order generations.</span>
               </li>
               <li>
-                <span class="comparison-icon">&#10003;</span>
+                <span class="comparison-icon" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
                 <span><strong>Stronger customer relationships</strong> built on guaranteed reliable supply.</span>
               </li>
             </ul>
@@ -318,21 +429,211 @@
           <p>If it is sold or used by weight or by counted unit, it can be tracked autonomously.</p>
         </div>
 
-        <div class="category-pills">
-          <div class="category-pill">🔩 Fasteners &amp; Screws</div>
-          <div class="category-pill">⚙️ Spare Parts &amp; Tooling</div>
-          <div class="category-pill">📦 Raw Materials</div>
-          <div class="category-pill">📋 Packaging Materials</div>
-          <div class="category-pill">🧪 Chemicals &amp; Consumables</div>
-          <div class="category-pill">🥫 Food Ingredients</div>
-          <div class="category-pill">🏥 Medical Supplies</div>
-          <div class="category-pill">🏬 Retail Stock</div>
+        <div class="applicability-grid">
+          <div class="app-card">
+            <div class="app-card-img-wrap">
+              <img src="assets/app-fasteners.jpg" alt="Fasteners and screws in industrial weight bins" loading="lazy">
+              <span class="app-card-tag">Industrial Hardware</span>
+            </div>
+            <div class="app-card-content">
+              <h3>Fasteners &amp; Screws</h3>
+              <p>M4-M20 bolts, hex nuts, washers, and specialized machine screws counted by piece weight.</p>
+            </div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-card-img-wrap">
+              <img src="assets/app-spare-parts.jpg" alt="Precision machine spare parts and tooling" loading="lazy">
+              <span class="app-card-tag">Manufacturing</span>
+            </div>
+            <div class="app-card-content">
+              <h3>Spare Parts &amp; Tooling</h3>
+              <p>Carbide end mills, CNC inserts, bearings, gears, and maintenance fittings.</p>
+            </div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-card-img-wrap">
+              <img src="assets/app-raw-materials.jpg" alt="Raw materials storage billets and metal rods" loading="lazy">
+              <span class="app-card-tag">Fabrication</span>
+            </div>
+            <div class="app-card-content">
+              <h3>Raw Materials</h3>
+              <p>Extruded aluminum billets, copper busbars, alloy rods, and polymer granules.</p>
+            </div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-card-img-wrap">
+              <img src="assets/app-packaging.jpg" alt="Corrugated packaging boxes and shipping supplies" loading="lazy">
+              <span class="app-card-tag">Logistics &amp; Shipping</span>
+            </div>
+            <div class="app-card-content">
+              <h3>Packaging Materials</h3>
+              <p>Corrugated cartons, bubble wrap rolls, strapping tape, and mailer bags.</p>
+            </div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-card-img-wrap">
+              <img src="assets/app-chemicals.jpg" alt="Chemicals, drums, and consumables" loading="lazy">
+              <span class="app-card-tag">Process Industries</span>
+            </div>
+            <div class="app-card-content">
+              <h3>Chemicals &amp; Consumables</h3>
+              <p>Industrial resins, sealants, lubricants, cleaning agents, and chemical drums.</p>
+            </div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-card-img-wrap">
+              <img src="assets/app-food.jpg" alt="Bulk food ingredients and sanitary bins" loading="lazy">
+              <span class="app-card-tag">Food &amp; Beverage</span>
+            </div>
+            <div class="app-card-content">
+              <h3>Food Ingredients</h3>
+              <p>Bulk flour, grains, sugar, spices, and ingredients in food-grade weight silos.</p>
+            </div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-card-img-wrap">
+              <img src="assets/app-medical.jpg" alt="Sterile clinical medical supplies inventory" loading="lazy">
+              <span class="app-card-tag">Healthcare</span>
+            </div>
+            <div class="app-card-content">
+              <h3>Medical Supplies</h3>
+              <p>Syringes, surgical gloves, IV consumables, test kits, and pharmaceuticals.</p>
+            </div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-card-img-wrap">
+              <img src="assets/app-retail.jpg" alt="Retail stock and apparel fulfillment inventory" loading="lazy">
+              <span class="app-card-tag">Omnichannel Retail</span>
+            </div>
+            <div class="app-card-content">
+              <h3>Retail Stock</h3>
+              <p>High-turnover packaged accessories, apparel items, and electronics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Facility ROI & Efficiency Calculator -->
+    <section class="section roi-section" id="roi-calculator">
+      <div class="container">
+        <div class="section-head">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            MEASURABLE BUSINESS IMPACT
+          </div>
+          <h2>Calculate your facility's annual savings.</h2>
+          <p>See the immediate labor hours saved and stockout capital preserved when your shelves weigh and reorder autonomously.</p>
+        </div>
+
+        <div class="roi-calc-container">
+          <!-- Left Column: Interactive Controls -->
+          <div class="roi-controls-card">
+            <div class="roi-control-group">
+              <div class="roi-ctrl-header">
+                <label for="roiBinsSlider">
+                  <span class="roi-ctrl-title">Active Monitored Bins / Shelves</span>
+                  <span class="roi-ctrl-hint">Total storage compartments on weight platforms</span>
+                </label>
+                <span class="roi-live-bubble" id="roiBinsBubble">60 Bins</span>
+              </div>
+              <input type="range" id="roiBinsSlider" min="10" max="500" step="5" value="60" class="roi-slider">
+              <div class="roi-slider-ticks">
+                <span>10 bins</span>
+                <span>250 bins</span>
+                <span>500+ bins</span>
+              </div>
+            </div>
+
+            <div class="roi-control-group">
+              <div class="roi-ctrl-header">
+                <label for="roiHoursSlider">
+                  <span class="roi-ctrl-title">Weekly Manual Counting Hours</span>
+                  <span class="roi-ctrl-hint">Staff time spent clipboard tallying & checking shelves</span>
+                </label>
+                <span class="roi-live-bubble" id="roiHoursBubble">14 hrs / wk</span>
+              </div>
+              <input type="range" id="roiHoursSlider" min="2" max="50" step="1" value="14" class="roi-slider">
+              <div class="roi-slider-ticks">
+                <span>2 hrs</span>
+                <span>25 hrs</span>
+                <span>50 hrs/wk</span>
+              </div>
+            </div>
+
+            <div class="roi-control-group">
+              <div class="roi-ctrl-header">
+                <label for="roiRateSlider">
+                  <span class="roi-ctrl-title">Average Warehouse Labor Rate</span>
+                  <span class="roi-ctrl-hint">Fully burdened hourly wage per employee</span>
+                </label>
+                <span class="roi-live-bubble" id="roiRateBubble">$32 / hr</span>
+              </div>
+              <input type="range" id="roiRateSlider" min="15" max="75" step="1" value="32" class="roi-slider">
+              <div class="roi-slider-ticks">
+                <span>$15/hr</span>
+                <span>$45/hr</span>
+                <span>$75/hr</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Real-time Projection Dashboard -->
+          <div class="roi-results-card">
+            <div class="roi-card-top">
+              <span class="roi-pill-tag">PROJECTED EFFICIENCY GAIN</span>
+              <h3>Annual Facility Return</h3>
+            </div>
+
+            <div class="roi-stats-matrix">
+              <div class="roi-stat-box primary-stat">
+                <div class="roi-stat-label">Direct Labor Cost Saved</div>
+                <div class="roi-stat-number" id="roiLaborSavedVal">$23,296</div>
+                <div class="roi-stat-caption">Eliminated counting payroll per year</div>
+              </div>
+
+              <div class="roi-stat-box">
+                <div class="roi-stat-label">Hours Reclaimed</div>
+                <div class="roi-stat-number" id="roiHoursSavedVal">728 <small>hrs</small></div>
+                <div class="roi-stat-caption">Reinvested in active production</div>
+              </div>
+
+              <div class="roi-stat-box">
+                <div class="roi-stat-label">Stockout Reduction</div>
+                <div class="roi-stat-number" style="color: var(--teal-light);">100%</div>
+                <div class="roi-stat-caption">Zero line stoppages or stock runs</div>
+              </div>
+
+              <div class="roi-stat-box">
+                <div class="roi-stat-label">Estimated Payback</div>
+                <div class="roi-stat-number" id="roiPaybackVal">2.8 <small>mo</small></div>
+                <div class="roi-stat-caption">Rapid hardware ROI timeline</div>
+              </div>
+            </div>
+
+            <div class="roi-card-action">
+              <a href="#demo" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 16px;">
+                Claim Your Custom Facility Audit
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 6. Carousel Showcase (See SmartWeight in action) -->
-    <section class="section alt-bg" id="solution">
+    <section class="section" id="solution">
       <div class="container">
         <div class="section-head">
           <div class="badge">
@@ -347,13 +648,25 @@
         <div class="carousel-wrap">
           <div class="carousel">
             <div class="slide active">
-              <img src="assets/smartweight-logo.jpeg" alt="SmartWeight Systems Logo">
+              <img src="assets/carousel-iot-scales.jpg" alt="SmartWeight IoT Load-Cell Scale Platform under inventory bins">
+              <div class="slide-caption-overlay">
+                <h4>Continuous Load-Cell Bins</h4>
+                <p>Sub-gram precision IoT scale platforms measure inventory continuously around the clock.</p>
+              </div>
             </div>
             <div class="slide">
-              <img src="assets/smartweight-features.png" alt="SmartWeight Systems features">
+              <img src="assets/carousel-analytics-dashboard.jpg" alt="SmartWeight Operations Telemetry & Reorder Dashboard">
+              <div class="slide-caption-overlay">
+                <h4>Real-Time Telemetry & Predictive Curves</h4>
+                <p>Automated replenishment curves trigger purchase orders before anyone notices shelves running low.</p>
+              </div>
             </div>
             <div class="slide">
-              <img src="assets/smartweight-contact.png" alt="SmartWeight Systems contact card">
+              <img src="assets/carousel-automated-delivery.jpg" alt="Autonomous Supplier Replenishment Logistics">
+              <div class="slide-caption-overlay">
+                <h4>Autonomous Supplier Replenishment</h4>
+                <p>Fast fulfillment direct to warehouse dock with zero retyping errors and guaranteed reliability.</p>
+              </div>
             </div>
           </div>
           <button class="arrow prev" onclick="changeSlide(-1)" aria-label="Previous slide">‹</button>
@@ -440,67 +753,10 @@
       </div>
     </section>
 
-    <!-- 7. At A Glance: Technical Specs from Brochure -->
-    <section class="section" id="specs">
-      <div class="container">
-        <div class="section-head">
-          <div class="badge">SPECIFICATIONS</div>
-          <h2>At a glance.</h2>
-          <p>Industrial grade engineering built for warehouses, supply chains, and manufacturing facilities.</p>
-        </div>
 
-        <div class="specs-grid">
-          <div class="spec-item">
-            <span class="spec-label">Sensing</span>
-            <span class="spec-val">Load-cell weighing platforms for shelves, bins, and pallets</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Connectivity</span>
-            <span class="spec-val">Wi-Fi / Ethernet / Cellular IoT telemetry modules</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Ordering</span>
-            <span class="spec-val">Automatic purchase orders dispatched via Email, Portal, API, or EDI</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Software</span>
-            <span class="spec-val">Cloud dashboard with live stock alerts, consumption history &amp; reorder rules</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Integrations</span>
-            <span class="spec-val">ERP, accounting, warehouse management &amp; purchasing systems</span>
-          </div>
-          <div class="spec-item">
-            <span class="spec-label">Capacity &amp; Accuracy</span>
-            <span class="spec-val">Gram-level precision up to high-capacity heavy pallet loads</span>
-          </div>
-        </div>
-
-        <!-- High-Impact Brochure Download Banner -->
-        <div class="brochure-cta-banner">
-          <div class="brochure-cta-content">
-            <h2>Download our complete product brochure.</h2>
-            <p>Get the full technical breakdown, operational workflow diagrams, and enterprise deployment guidelines in a compact 4-page PDF.</p>
-          </div>
-          <div class="brochure-cta-actions">
-            <a href="assets/Smart-Weight-Systems-Brochure.pdf" download="Smart-Weight-Systems-Brochure.pdf" class="btn btn-white" style="padding: 16px 32px; font-size: 1.05rem; font-weight: 800;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg>
-              Download Brochure (PDF)
-            </a>
-            <a href="#demo" class="btn btn-outline" style="border-color: rgba(255,255,255,0.4); color: #ffffff; background: transparent;">
-              Request Live Bench Test
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- 8. Projects & Tied-up Companies Section -->
-    <section class="section alt-bg" id="projects">
+    <section class="section" id="projects">
       <div class="container">
         <div class="section-head">
           <div class="badge">
@@ -513,87 +769,97 @@
 
         <div class="projects-grid">
           <article class="project-card">
-            <span class="project-card-badge">REAL-TIME SENSING MATRIX</span>
-            <h3>Smart Inventory Monitoring</h3>
-            <p class="project-card-summary">
-              Real-time weight-based stock monitoring for accurate inventory visibility and reduced manual overhead.
-            </p>
-            <ul class="project-card-list">
-              <li>
-                <span class="project-check-icon" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </span>
-                Real-time tracking
-              </li>
-              <li>
-                <span class="project-check-icon" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </span>
-                Weight-based monitoring
-              </li>
-              <li>
-                <span class="project-check-icon" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </span>
-                Automated alerts
-              </li>
-              <li>
-                <span class="project-check-icon" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </span>
-                Reduced manual checking
-              </li>
-            </ul>
+            <div class="project-card-image-wrap">
+              <img src="assets/carousel-iot-scales.jpg" alt="Smart Inventory Monitoring IoT Scales" class="project-card-img" loading="lazy">
+            </div>
+            <div class="project-card-body">
+              <span class="project-card-badge">REAL-TIME SENSING MATRIX</span>
+              <h3>Smart Inventory Monitoring</h3>
+              <p class="project-card-summary">
+                Real-time weight-based stock monitoring for accurate inventory visibility and reduced manual overhead.
+              </p>
+              <ul class="project-card-list">
+                <li>
+                  <span class="project-check-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  Real-time tracking
+                </li>
+                <li>
+                  <span class="project-check-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  Weight-based monitoring
+                </li>
+                <li>
+                  <span class="project-check-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  Automated alerts
+                </li>
+                <li>
+                  <span class="project-check-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  Reduced manual checking
+                </li>
+              </ul>
+            </div>
           </article>
 
           <article class="project-card">
-            <span class="project-card-badge">AUTONOMOUS PROCUREMENT</span>
-            <h3>Automated Stock Management</h3>
-            <p class="project-card-summary">
-              Connected inventory intelligence to support timely reordering, stock balance, and planning.
-            </p>
-            <ul class="project-card-list">
-              <li>
-                <span class="project-check-icon" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </span>
-                Low-stock notifications
-              </li>
-              <li>
-                <span class="project-check-icon" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </span>
-                Inventory analytics
-              </li>
-              <li>
-                <span class="project-check-icon" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </span>
-                Better planning
-              </li>
-              <li>
-                <span class="project-check-icon" aria-hidden="true">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </span>
-                Improved efficiency
-              </li>
-            </ul>
+            <div class="project-card-image-wrap">
+              <img src="assets/carousel-analytics-dashboard.jpg" alt="Automated Stock Management Dashboard" class="project-card-img" loading="lazy">
+            </div>
+            <div class="project-card-body">
+              <span class="project-card-badge">AUTONOMOUS PROCUREMENT</span>
+              <h3>Automated Stock Management</h3>
+              <p class="project-card-summary">
+                Connected inventory intelligence to support timely reordering, stock balance, and planning.
+              </p>
+              <ul class="project-card-list">
+                <li>
+                  <span class="project-check-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  Low-stock notifications
+                </li>
+                <li>
+                  <span class="project-check-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  Inventory analytics
+                </li>
+                <li>
+                  <span class="project-check-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  Better planning
+                </li>
+                <li>
+                  <span class="project-check-icon" aria-hidden="true">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                  Improved efficiency
+                </li>
+              </ul>
+            </div>
           </article>
         </div>
 
@@ -614,8 +880,8 @@
                   <circle cx="18.5" cy="18.5" r="2.5"></circle>
                 </svg>
               </div>
-              <div class="partner-name">Partner Company 1</div>
-              <div class="partner-category">Logistics &amp; Supply</div>
+              <div class="partner-name">Apex Logistics Network</div>
+              <div class="partner-category">Logistics &amp; Supply Fleet</div>
             </div>
 
             <div class="partner-card">
@@ -626,8 +892,8 @@
                   <path d="M16 10a4 4 0 0 1-8 0"></path>
                 </svg>
               </div>
-              <div class="partner-name">Partner Company 2</div>
-              <div class="partner-category">Retail Distribution</div>
+              <div class="partner-name">OmniSupply Global</div>
+              <div class="partner-category">Retail &amp; Omni Fulfillment</div>
             </div>
 
             <div class="partner-card">
@@ -636,8 +902,8 @@
                   <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
                 </svg>
               </div>
-              <div class="partner-name">Partner Company 3</div>
-              <div class="partner-category">Warehousing Operations</div>
+              <div class="partner-name">Vanguard Warehousing</div>
+              <div class="partner-category">Automated Depot Ops</div>
             </div>
 
             <div class="partner-card">
@@ -648,8 +914,8 @@
                   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
                 </svg>
               </div>
-              <div class="partner-name">Partner Company 4</div>
-              <div class="partner-category">Industrial Manufacturing</div>
+              <div class="partner-name">Precision Industrial</div>
+              <div class="partner-category">Fasteners &amp; Hardware</div>
             </div>
           </div>
         </div>
@@ -844,9 +1110,8 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
             <li><a href="#solution">Solution &amp; Carousel</a></li>
-            <li><a href="#specs">Specifications</a></li>
+            <li><a href="assets/Smart-Weight-Systems-Brochure.pdf" download="Smart-Weight-Systems-Brochure.pdf">Product Brochure (PDF)</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="admin.html">Admin Console</a></li>
           </ul>
         </div>
 

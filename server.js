@@ -117,6 +117,15 @@ const MIME_TYPES = {
   ".pdf": "application/pdf",
 };
 
+
+function isAuthorizedAdmin(req) {
+  const adminPass = process.env.ADMIN_PASSWORD || "smartweight2026";
+  const expectedToken = "auth_token_" + Buffer.from(adminPass).toString("base64");
+  const authHeader = req.headers["x-admin-token"] || req.headers["authorization"] || "";
+  const token = authHeader.replace(/^Bearer\s+/, "").trim();
+  return token === expectedToken;
+}
+
 function sendJson(res, statusCode, body) {
   const json = JSON.stringify(body);
   res.writeHead(statusCode, {
@@ -198,6 +207,10 @@ async function sendCustomEmail({ to, subject, html, replyTo }) {
         auth: {
           user: smtpUser,
           pass: smtpPass,
+        },
+        tls: {
+          rejectUnauthorized: false,
+        
         },
       });
 
@@ -307,7 +320,7 @@ function buildDemoCustomerEmail({ name, message }) {
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; font-size: 14px; color: #334155; margin: 20px 0;">
           <div><strong>CEO:</strong> Stephen Jones C</div>
           <div style="margin-top: 6px;"><strong>Phone / WhatsApp:</strong> <a href="tel:6382368791" style="color: #0284c7; text-decoration: none;">+91 6382368791</a></div>
-          <div style="margin-top: 6px;"><strong>Email:</strong> <a href="mailto:jonesarock79703@gmail.com" style="color: #0284c7; text-decoration: none;">jonesarock79703@gmail.com</a></div>
+          <div style="margin-top: 6px;"><strong>Email:</strong> <a href="mailto:dharineesh1557@gmail.com" style="color: #0284c7; text-decoration: none;">dharineesh1557@gmail.com</a></div>
           <div style="margin-top: 6px;"><strong>Address:</strong> Opposite to Darling showroom, New Busstand, Salem – 636009</div>
         </div>
 
@@ -381,6 +394,25 @@ const server = http.createServer(async (req, res) => {
   }
 
   try {
+    
+    // Admin Login Authentication
+    if (pathname === "/api/admin/login" && method === "POST") {
+      const body = await parseJsonBody(req);
+      const adminPass = process.env.ADMIN_PASSWORD || "smartweight2026";
+      if (body.password === adminPass) {
+        const token = "auth_token_" + Buffer.from(adminPass).toString("base64");
+        return sendJson(res, 200, {
+          success: true,
+          token,
+          message: "Admin authentication successful"
+        });
+      }
+      return sendJson(res, 401, {
+        success: false,
+        error: "Incorrect admin password"
+      });
+    }
+
     // 1. Health Check
     if (pathname === "/api/health" && method === "GET") {
       return sendJson(res, 200, {
@@ -422,7 +454,7 @@ const server = http.createServer(async (req, res) => {
       writeDatabase(db);
 
       // Trigger customized email notifications asynchronously in background
-      const adminEmail = process.env.ADMIN_EMAIL || "jonesarock79703@gmail.com";
+      const adminEmail = process.env.ADMIN_EMAIL || "dharineesh1557@gmail.com";
 
       // 1. Email to Admin/CEO
       sendCustomEmail({
@@ -447,6 +479,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (pathname === "/api/demo" && method === "GET") {
+      if (!isAuthorizedAdmin(req)) { return sendJson(res, 401, { success: false, error: "Unauthorized. Admin password required." }); }
       const db = readDatabase();
       return sendJson(res, 200, {
         success: true,
@@ -485,7 +518,7 @@ const server = http.createServer(async (req, res) => {
       writeDatabase(db);
 
       // Trigger customized email notifications
-      const adminEmail = process.env.ADMIN_EMAIL || "jonesarock79703@gmail.com";
+      const adminEmail = process.env.ADMIN_EMAIL || "dharineesh1557@gmail.com";
       sendCustomEmail({
         to: adminEmail,
         subject: `✉️ New Contact Message from ${newMsg.name}`,
@@ -501,6 +534,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (pathname === "/api/contact" && method === "GET") {
+      if (!isAuthorizedAdmin(req)) { return sendJson(res, 401, { success: false, error: "Unauthorized. Admin password required." }); }
       const db = readDatabase();
       return sendJson(res, 200, {
         success: true,
@@ -596,6 +630,162 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, { success: true, data: bin });
     }
 
+    
+    // 6b. Add New Inventory Bin
+    if (pathname === "/api/inventory" && method === "POST") {
+      const body = await parseJsonBody(req);
+      const { bin_name, sku, max_weight_kg, unit_weight_kg, low_stock_threshold_units, initial_weight_kg, tare_weight_kg } = body;
+      
+      if (!bin_name || !sku) {
+        return sendJson(res, 400, { success: false, error: "Bin name and SKU are required" });
+      }
+      
+      const db = readDatabase();
+      const id = "BIN-" + String(db.inventory_bins.length + 1).padStart(3, "0");
+      const unitWt = parseFloat(unit_weight_kg) || 0.01;
+      const tareWt = parseFloat(tare_weight_kg) || 0.5;
+      const maxWt = parseFloat(max_weight_kg) || 25.0;
+      const curWt = typeof initial_weight_kg !== "undefined" ? parseFloat(initial_weight_kg) : maxWt * 0.7;
+      const threshold = parseInt(low_stock_threshold_units, 10) || 100;
+      
+      const net = Math.max(0, curWt - tareWt);
+      const units = Math.round(net / unitWt);
+      let status = "OK";
+      if (units === 0) status = "EMPTY";
+      else if (units <= threshold) status = "LOW_STOCK";
+
+      const newBin = {
+        id,
+        bin_name: bin_name.trim(),
+        sku: sku.trim().toUpperCase(),
+        current_weight_kg: curWt,
+        max_weight_kg: maxWt,
+        tare_weight_kg: tareWt,
+        unit_weight_kg: unitWt,
+        low_stock_threshold_units: threshold,
+        stock_count: units,
+        status,
+        last_updated: new Date().toISOString()
+      };
+
+      db.inventory_bins.push(newBin);
+      writeDatabase(db);
+      return sendJson(res, 201, { success: true, message: `Bin ${id} created`, data: newBin });
+    }
+
+    // 6c. Delete Inventory Bin
+    const deleteBinMatch = pathname.match(/^\/api\/inventory\/([A-Za-z0-9-_]+)$/);
+    if (deleteBinMatch && method === "DELETE") {
+      const binId = deleteBinMatch[1];
+      const db = readDatabase();
+      const idx = db.inventory_bins.findIndex(b => b.id.toUpperCase() === binId.toUpperCase());
+      if (idx === -1) {
+        return sendJson(res, 404, { success: false, error: `Bin ${binId} not found` });
+      }
+      const removed = db.inventory_bins.splice(idx, 1)[0];
+      writeDatabase(db);
+      return sendJson(res, 200, { success: true, message: `Bin ${binId} deleted`, data: removed });
+    }
+
+    // 6d. Trigger Reorder PO
+    const reorderBinMatch = pathname.match(/^\/api\/inventory\/([A-Za-z0-9-_]+)\/reorder$/);
+    if (reorderBinMatch && method === "POST") {
+      const binId = reorderBinMatch[1];
+      const db = readDatabase();
+      const bin = db.inventory_bins.find(b => b.id.toUpperCase() === binId.toUpperCase());
+      if (!bin) {
+        return sendJson(res, 404, { success: false, error: `Bin ${binId} not found` });
+      }
+
+      if (!db.reorder_logs) db.reorder_logs = [];
+      const poNum = "PO-" + Math.floor(1000 + Math.random() * 9000);
+      const reorderQty = Math.max(100, (bin.low_stock_threshold_units * 3));
+
+      const newPO = {
+        id: poNum,
+        bin_id: bin.id,
+        item_name: bin.bin_name,
+        sku: bin.sku,
+        reorder_quantity: reorderQty,
+        dispatched_to: "Certified Vendor Supply Portal (EDI / REST API)",
+        status: "TRANSMITTED",
+        timestamp: new Date().toISOString()
+      };
+
+      db.reorder_logs.unshift(newPO);
+      writeDatabase(db);
+      return sendJson(res, 201, { success: true, message: `Automated Purchase Order ${poNum} dispatched!`, data: newPO });
+    }
+
+    // 6e. Get Reorder Logs
+    if (pathname === "/api/reorders" && method === "GET") {
+      const db = readDatabase();
+      return sendJson(res, 200, { success: true, count: (db.reorder_logs || []).length, data: db.reorder_logs || [] });
+    }
+
+    // 6f. Update Demo Status
+    const demoStatusMatch = pathname.match(/^\/api\/demo\/(\d+)\/status$/);
+    if (demoStatusMatch && method === "POST") {
+      if (!isAuthorizedAdmin(req)) { return sendJson(res, 401, { success: false, error: "Unauthorized" }); }
+      const demoId = parseInt(demoStatusMatch[1], 10);
+      const body = await parseJsonBody(req);
+      const db = readDatabase();
+      const demo = db.demo_requests.find(d => d.id === demoId);
+      if (!demo) {
+        return sendJson(res, 404, { success: false, error: "Demo not found" });
+      }
+      demo.status = body.status || "CONTACTED";
+      writeDatabase(db);
+      return sendJson(res, 200, { success: true, message: "Status updated", data: demo });
+    }
+
+    // 6g. Update Contact Status
+    const contactStatusMatch = pathname.match(/^\/api\/contact\/(\d+)\/status$/);
+    if (contactStatusMatch && method === "POST") {
+      if (!isAuthorizedAdmin(req)) { return sendJson(res, 401, { success: false, error: "Unauthorized" }); }
+      const contactId = parseInt(contactStatusMatch[1], 10);
+      const body = await parseJsonBody(req);
+      const db = readDatabase();
+      const msg = db.contact_messages.find(c => c.id === contactId);
+      if (!msg) {
+        return sendJson(res, 404, { success: false, error: "Message not found" });
+      }
+      msg.status = body.status || "REPLIED";
+      writeDatabase(db);
+      return sendJson(res, 200, { success: true, message: "Status updated", data: msg });
+    }
+
+    
+    // 6h. Delete Demo
+    const deleteDemoMatch = pathname.match(/^\/api\/demo\/(\d+)$/);
+    if (deleteDemoMatch && method === "DELETE") {
+      if (!isAuthorizedAdmin(req)) { return sendJson(res, 401, { success: false, error: "Unauthorized" }); }
+      const demoId = parseInt(deleteDemoMatch[1], 10);
+      const db = readDatabase();
+      const idx = db.demo_requests.findIndex(d => d.id === demoId);
+      if (idx === -1) {
+        return sendJson(res, 404, { success: false, error: "Demo not found" });
+      }
+      const removed = db.demo_requests.splice(idx, 1)[0];
+      writeDatabase(db);
+      return sendJson(res, 200, { success: true, message: "Demo request deleted", data: removed });
+    }
+
+    // 6i. Delete Contact
+    const deleteContactMatch = pathname.match(/^\/api\/contact\/(\d+)$/);
+    if (deleteContactMatch && method === "DELETE") {
+      if (!isAuthorizedAdmin(req)) { return sendJson(res, 401, { success: false, error: "Unauthorized" }); }
+      const contactId = parseInt(deleteContactMatch[1], 10);
+      const db = readDatabase();
+      const idx = db.contact_messages.findIndex(c => c.id === contactId);
+      if (idx === -1) {
+        return sendJson(res, 404, { success: false, error: "Message not found" });
+      }
+      const removed = db.contact_messages.splice(idx, 1)[0];
+      writeDatabase(db);
+      return sendJson(res, 200, { success: true, message: "Contact message deleted", data: removed });
+    }
+
     // 7. Static Website Serving
     if (method === "GET") {
       return serveStatic(req, res, pathname);
@@ -614,7 +804,7 @@ server.listen(PORT, () => {
   console.log(`🌐 Website URL:    http://localhost:${PORT}`);
   console.log(`📡 API Base URL:   http://localhost:${PORT}/api`);
   console.log(`📊 Admin Console:  http://localhost:${PORT}/admin.html`);
-  console.log(`📧 Email Alerts:   Active -> ${process.env.ADMIN_EMAIL || "jonesarock79703@gmail.com"}`);
+  console.log(`📧 Email Alerts:   Active -> ${process.env.ADMIN_EMAIL || "dharineesh1557@gmail.com"}`);
   console.log(`=======================================================`);
 });
 

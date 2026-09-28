@@ -7,28 +7,49 @@
   <meta name="description" content="Get in touch with SmartWeight Systems for industrial weight monitoring solutions.">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="contact-page">
 
-<div class="bg-mesh"></div>
+<div class="bg-mesh bg-mesh-contact"></div>
 
 <header class="navbar">
   <div class="container nav-inner">
-    <a class="brand" href="index.html">
-      <div class="brand-logo-wrap">
-        <img src="assets/smartweight-logo.jpeg" alt="SmartWeight Systems Logo">
+    <a class="brand" href="index.html#home" aria-label="SmartWeight Systems Home">
+      <div class="brand-logo-frame">
+        <img src="assets/smartweight-icon.png" alt="SmartWeight Systems Logo">
       </div>
-      <div class="brand-text">
-        <strong>SmartWeight Systems</strong>
-        <small>Automated Inventory Intelligence</small>
+      <div class="brand-meta">
+        <span class="brand-name">SmartWeight Systems</span>
+        <span class="brand-subtitle">Automated Inventory Intelligence</span>
       </div>
     </a>
-    <button class="menu" aria-label="Toggle navigation">☰</button>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="solution.html">Solution</a>
-      <a href="projects.html">Projects</a>
-      <a class="active" href="contact.html">Contact</a>
-      <a class="nav-admin-btn" href="admin.html">Admin</a>
+
+    <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+      <div class="hamburger-box">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </div>
+    </button>
+
+    <nav aria-label="Main Navigation">
+      <ul class="nav-links" id="navLinksMenu">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#problem" class="nav-link">Why Us</a></li>
+        <li><a href="index.html#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="solution.html" class="nav-link">Solution</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="contact.html" class="nav-link active" aria-current="page">Contact</a></li>
+        <li>
+          <a href="assets/Smart-Weight-Systems-Brochure.pdf" download="Smart-Weight-Systems-Brochure.pdf" class="btn-nav-brochure" title="Download Official Product Brochure">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Brochure
+          </a>
+        </li>
+      </ul>
     </nav>
   </div>
 </header>
@@ -38,7 +59,7 @@
     <div class="container contact-grid">
       <div class="contact-card-modern">
         <h2>Let's connect</h2>
-        <p style="color:#64748b;margin-bottom:28px;">Reach out to discuss automated inventory intelligence for your business.</p>
+        <p style="color:#94a3b8;margin-bottom:18px;">Reach out to discuss automated inventory intelligence for your business.</p>
         
         <div class="contact-item">
           <div class="contact-icon-badge">👤</div>

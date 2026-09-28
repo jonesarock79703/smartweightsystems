@@ -1,0 +1,134 @@
+{
+  "demo_requests": [
+    {
+      "id": 1,
+      "name": "Alex Mercer",
+      "email": "alex.mercer@apexindustrial.com",
+      "phone": "+1 (555) 234-8901",
+      "company_name": "Apex Industrial Supply",
+      "message": "Interested in evaluating 50 weight bins for our Fastener Assembly line in Chicago.",
+      "status": "Complete",
+      "created_at": "2026-09-25T00:47:26.013Z"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Jenkins",
+      "email": "sarah.j@titanlogistics.com",
+      "phone": "+1 (555) 789-1234",
+      "company_name": "Titan Logistics & Assembly",
+      "message": "Requesting custom quote and live hardware test bench demonstration for 4 manufacturing bays.",
+      "status": "DEMO_SCHEDULED",
+      "created_at": "2026-09-24T07:47:26.013Z"
+    }
+  ],
+  "contact_messages": [
+    {
+      "id": 2,
+      "name": "Dharineesh Dharineesh",
+      "email": "dharineesh1557@gmail.com",
+      "phone": "345546757568",
+      "message": ";lm;l,';k;'lkl",
+      "status": "Complete",
+      "created_at": "2026-09-24T17:01:23.884Z"
+    }
+  ],
+  "inventory_bins": [
+    {
+      "id": "BIN-001",
+      "bin_name": "Hex Head Bolts M10x50",
+      "sku": "BOLT-HEX-M10",
+      "current_weight_kg": 24.5,
+      "max_weight_kg": 30,
+      "tare_weight_kg": 0.5,
+      "unit_weight_kg": 0.048,
+      "low_stock_threshold_units": 100,
+      "stock_count": 500,
+      "status": "OK",
+      "last_updated": "2026-09-22T16:28:19.927Z"
+    },
+    {
+      "id": "BIN-002",
+      "bin_name": "Stainless Steel Washers 10mm",
+      "sku": "WASH-SS-10",
+      "current_weight_kg": 3.2,
+      "max_weight_kg": 25,
+      "tare_weight_kg": 0.5,
+      "unit_weight_kg": 0.009,
+      "low_stock_threshold_units": 400,
+      "stock_count": 300,
+      "status": "LOW_STOCK",
+      "last_updated": "2026-09-22T16:28:19.927Z"
+    },
+    {
+      "id": "BIN-003",
+      "bin_name": "Brass Threaded Inserts M6",
+      "sku": "INSRT-BR-M6",
+      "current_weight_kg": 18.8,
+      "max_weight_kg": 20,
+      "tare_weight_kg": 0.4,
+      "unit_weight_kg": 0.012,
+      "low_stock_threshold_units": 250,
+      "stock_count": 1533,
+      "status": "OK",
+      "last_updated": "2026-09-22T16:28:19.927Z"
+    },
+    {
+      "id": "BIN-004",
+      "bin_name": "Flange Nuts M8",
+      "sku": "NUT-FLG-M8",
+      "current_weight_kg": 0.5,
+      "max_weight_kg": 15,
+      "tare_weight_kg": 0.5,
+      "unit_weight_kg": 0.015,
+      "low_stock_threshold_units": 150,
+      "stock_count": 0,
+      "status": "EMPTY",
+      "last_updated": "2026-09-22T16:28:19.927Z"
+    },
+    {
+      "id": "BIN-005",
+      "bin_name": "Metric Hex Nuts M12",
+      "sku": "NUT-HEX-M12",
+      "current_weight_kg": 28.5,
+      "max_weight_kg": 35,
+      "tare_weight_kg": 0.5,
+      "unit_weight_kg": 0.02,
+      "low_stock_threshold_units": 200,
+      "stock_count": 1400,
+      "status": "OK",
+      "last_updated": "2026-09-25T05:50:49.685Z"
+    }
+  ],
+  "reorder_logs": [
+    {
+      "id": "PO-4695",
+      "bin_id": "BIN-002",
+      "item_name": "Stainless Steel Washers 10mm",
+      "sku": "WASH-SS-10",
+      "reorder_quantity": 1200,
+      "dispatched_to": "Certified Vendor Supply Portal (EDI / REST API)",
+      "status": "TRANSMITTED",
+      "timestamp": "2026-09-25T05:50:24.244Z"
+    },
+    {
+      "id": "PO-9041",
+      "bin_id": "BIN-002",
+      "item_name": "Stainless Steel Washers 10mm",
+      "sku": "WASH-SS-10",
+      "reorder_quantity": 1000,
+      "dispatched_to": "Apex Fastener Corp (EDI Gateway)",
+      "status": "TRANSMITTED",
+      "timestamp": "2026-09-25T03:47:26.013Z"
+    },
+    {
+      "id": "PO-9042",
+      "bin_id": "BIN-004",
+      "item_name": "Flange Nuts M8",
+      "sku": "NUT-FLG-M8",
+      "reorder_quantity": 500,
+      "dispatched_to": "Global Industrial Fasteners (API Gateway)",
+      "status": "DELIVERED",
+      "timestamp": "2026-09-24T05:47:26.013Z"
+    }
+  ]
+}

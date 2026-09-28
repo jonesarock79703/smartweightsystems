@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: smartweight-systems
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: ADMIN_PASSWORD
+        value: smartweight2026
+      - key: ADMIN_EMAIL
+        value: dharineesh1557@gmail.com
