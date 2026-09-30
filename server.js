@@ -119,7 +119,7 @@ const MIME_TYPES = {
 
 
 function isAuthorizedAdmin(req) {
-  const adminPass = process.env.ADMIN_PASSWORD || "smartweight2026";
+  const adminPass = process.env.ADMIN_PASSWORD || "Jones@2802";
   const expectedToken = "auth_token_" + Buffer.from(adminPass).toString("base64");
   const authHeader = req.headers["x-admin-token"] || req.headers["authorization"] || "";
   const token = authHeader.replace(/^Bearer\s+/, "").trim();
@@ -320,7 +320,7 @@ function buildDemoCustomerEmail({ name, message }) {
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; font-size: 14px; color: #334155; margin: 20px 0;">
           <div><strong>CEO:</strong> Stephen Jones C</div>
           <div style="margin-top: 6px;"><strong>Phone / WhatsApp:</strong> <a href="tel:6382368791" style="color: #0284c7; text-decoration: none;">+91 6382368791</a></div>
-          <div style="margin-top: 6px;"><strong>Email:</strong> <a href="mailto:dharineesh1557@gmail.com" style="color: #0284c7; text-decoration: none;">dharineesh1557@gmail.com</a></div>
+          <div style="margin-top: 6px;"><strong>Email:</strong> <a href="mailto:jonesarock79703@gmail.com" style="color: #0284c7; text-decoration: none;">jonesarock79703@gmail.com</a></div>
           <div style="margin-top: 6px;"><strong>Address:</strong> Opposite to Darling showroom, New Busstand, Salem – 636009</div>
         </div>
 
@@ -398,7 +398,7 @@ const server = http.createServer(async (req, res) => {
     // Admin Login Authentication
     if (pathname === "/api/admin/login" && method === "POST") {
       const body = await parseJsonBody(req);
-      const adminPass = process.env.ADMIN_PASSWORD || "smartweight2026";
+      const adminPass = process.env.ADMIN_PASSWORD || "Jones@2802";
       if (body.password === adminPass) {
         const token = "auth_token_" + Buffer.from(adminPass).toString("base64");
         return sendJson(res, 200, {
@@ -454,7 +454,7 @@ const server = http.createServer(async (req, res) => {
       writeDatabase(db);
 
       // Trigger customized email notifications asynchronously in background
-      const adminEmail = process.env.ADMIN_EMAIL || "dharineesh1557@gmail.com";
+      const adminEmail = process.env.ADMIN_EMAIL || "jonesarock79703@gmail.com";
 
       // 1. Email to Admin/CEO
       sendCustomEmail({
@@ -518,7 +518,7 @@ const server = http.createServer(async (req, res) => {
       writeDatabase(db);
 
       // Trigger customized email notifications
-      const adminEmail = process.env.ADMIN_EMAIL || "dharineesh1557@gmail.com";
+      const adminEmail = process.env.ADMIN_EMAIL || "jonesarock79703@gmail.com";
       sendCustomEmail({
         to: adminEmail,
         subject: `✉️ New Contact Message from ${newMsg.name}`,
@@ -804,7 +804,7 @@ server.listen(PORT, () => {
   console.log(`🌐 Website URL:    http://localhost:${PORT}`);
   console.log(`📡 API Base URL:   http://localhost:${PORT}/api`);
   console.log(`📊 Admin Console:  http://localhost:${PORT}/admin.html`);
-  console.log(`📧 Email Alerts:   Active -> ${process.env.ADMIN_EMAIL || "dharineesh1557@gmail.com"}`);
+  console.log(`📧 Email Alerts:   Active -> ${process.env.ADMIN_EMAIL || "jonesarock79703@gmail.com"}`);
   console.log(`=======================================================`);
 });
 

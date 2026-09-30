@@ -8,14 +8,14 @@ if (fs.existsSync('.env')) {
   if (match) smtpPass = match[1].trim();
 }
 
-console.log('Testing SMTP connection for dharineesh1557@gmail.com...');
+console.log('Testing SMTP connection for jonesarock79703@gmail.com...');
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 465,
   secure: true,
   auth: {
-    user: 'dharineesh1557@gmail.com',
+    user: 'jonesarock79703@gmail.com',
     pass: smtpPass
   },
   tls: {
@@ -28,10 +28,10 @@ async function main() {
     await transporter.verify();
     console.log('? Connection verified!');
     
-    console.log('Sending test email to dharineesh1557@gmail.com...');
+    console.log('Sending test email to jonesarock79703@gmail.com...');
     const info = await transporter.sendMail({
-      from: '"SmartWeight Systems" <dharineesh1557@gmail.com>',
-      to: 'dharineesh1557@gmail.com',
+      from: '"SmartWeight Systems" <jonesarock79703@gmail.com>',
+      to: 'jonesarock79703@gmail.com',
       subject: '? SmartWeight Systems - Nodemailer Test Working!',
       html: '<h3>Hello Dharineesh!</h3><p>Your Nodemailer configuration with Gmail SMTP is now <strong>100% working</strong>.</p><p>You will now receive all demo and contact submissions from the website!</p>'
     });
