@@ -23,6 +23,24 @@
   ],
   "contact_messages": [
     {
+      "id": 3,
+      "name": "SmartWeight Systems Test",
+      "email": "test@smartweightsystems.com",
+      "phone": "6382368791",
+      "message": "Hello Stephen Jones! This is a live email test verification directly from the SmartWeight Systems backend.",
+      "status": "NEW",
+      "created_at": "2026-09-30T17:41:52.705Z"
+    },
+    {
+      "id": 2,
+      "name": "Dharineesh Dharineesh",
+      "email": "dharineesh1557@gmail.com",
+      "phone": "345546757568",
+      "message": "mme;;ldlwemlkf",
+      "status": "NEW",
+      "created_at": "2026-09-30T17:29:28.593Z"
+    },
+    {
       "id": 2,
       "name": "Dharineesh Dharineesh",
       "email": "dharineesh1557@gmail.com",
