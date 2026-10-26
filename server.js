@@ -200,19 +200,37 @@ async function sendCustomEmail({ to, subject, html, replyTo }) {
   if (smtpUser && smtpPass) {
     try {
       const nodemailer = (await import("nodemailer")).default;
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: smtpPort,
-        secure: smtpPort === 465,
-        auth: {
-          user: smtpUser,
-          pass: smtpPass,
-        },
-        tls: {
-          rejectUnauthorized: false,
-        
-        },
-      });
+      const transportOptions = (smtpHost === "smtp.gmail.com" || smtpUser.endsWith("@gmail.com"))
+        ? {
+            service: "gmail",
+            auth: {
+              user: smtpUser,
+              pass: smtpPass,
+            },
+            tls: {
+              rejectUnauthorized: false,
+            },
+            connectionTimeout: 10000,
+            greetingTimeout: 8000,
+            socketTimeout: 15000,
+          }
+        : {
+            host: smtpHost,
+            port: smtpPort,
+            secure: smtpPort === 465,
+            auth: {
+              user: smtpUser,
+              pass: smtpPass,
+            },
+            tls: {
+              rejectUnauthorized: false,
+            },
+            connectionTimeout: 10000,
+            greetingTimeout: 8000,
+            socketTimeout: 15000,
+          };
+
+      const transporter = nodemailer.createTransport(transportOptions);
 
       const info = await transporter.sendMail({
         from: `"SmartWeight Systems" <${smtpUser}>`,
