@@ -191,12 +191,41 @@ function serveStatic(req, res, filePath) {
 // =========================================================================
 
 async function sendCustomEmail({ to, subject, html, replyTo }) {
+  // 1. Resend API (HTTPS Port 443 - 100% Unblocked by all Cloud Firewalls)
+  if (process.env.RESEND_API_KEY) {
+    try {
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: process.env.RESEND_FROM || "SmartWeight Systems <onboarding@resend.dev>",
+          to: [to],
+          reply_to: replyTo || "jonesarock79703@gmail.com",
+          subject,
+          html,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        console.log(`📧 [RESEND EMAIL SENT] To: ${to} | Subject: "${subject}" | ID: ${data.id}`);
+        return { success: true, method: "resend", id: data.id };
+      } else {
+        console.error("⚠️ [RESEND API ERROR]:", data);
+      }
+    } catch (err) {
+      console.error("⚠️ [RESEND NETWORK ERROR]:", err.message);
+    }
+  }
+
+  // 2. SMTP / Nodemailer (Works locally and on servers with open SMTP ports)
   const smtpUser = process.env.SMTP_USER || "jonesarock79703@gmail.com";
   const smtpPass = process.env.SMTP_PASS || "ifzm tqfb mxez whtq";
   const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
   const smtpPort = parseInt(process.env.SMTP_PORT || "465", 10);
 
-  // 1. SMTP / Nodemailer
   if (smtpUser && smtpPass) {
     try {
       const nodemailer = (await import("nodemailer")).default;
@@ -210,9 +239,9 @@ async function sendCustomEmail({ to, subject, html, replyTo }) {
             tls: {
               rejectUnauthorized: false,
             },
-            connectionTimeout: 10000,
-            greetingTimeout: 8000,
-            socketTimeout: 15000,
+            connectionTimeout: 5000,
+            greetingTimeout: 4000,
+            socketTimeout: 7000,
           }
         : {
             host: smtpHost,
@@ -225,9 +254,9 @@ async function sendCustomEmail({ to, subject, html, replyTo }) {
             tls: {
               rejectUnauthorized: false,
             },
-            connectionTimeout: 10000,
-            greetingTimeout: 8000,
-            socketTimeout: 15000,
+            connectionTimeout: 5000,
+            greetingTimeout: 4000,
+            socketTimeout: 7000,
           };
 
       const transporter = nodemailer.createTransport(transportOptions);
@@ -241,35 +270,10 @@ async function sendCustomEmail({ to, subject, html, replyTo }) {
       });
 
       console.log(`📧 [EMAIL SENT] To: ${to} | Subject: "${subject}" | ID: ${info.messageId}`);
-      return { success: true, messageId: info.messageId };
+      return { success: true, method: "nodemailer", messageId: info.messageId };
     } catch (err) {
       console.error("⚠️ [SMTP EMAIL ERROR]:", err.message);
-      return { success: false, error: err.message };
-    }
-  }
-
-  // 2. Resend API (HTTP POST - zero external libraries)
-  if (process.env.RESEND_API_KEY) {
-    try {
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: process.env.RESEND_FROM || "SmartWeight Systems <onboarding@resend.dev>",
-          to: [to],
-          reply_to: replyTo,
-          subject,
-          html,
-        }),
-      });
-      const data = await res.json();
-      console.log(`📧 [RESEND EMAIL SENT] To: ${to} | Subject: "${subject}"`);
-      return { success: true, data };
-    } catch (err) {
-      console.error("⚠️ [RESEND EMAIL ERROR]:", err.message);
+      return { success: false, method: "nodemailer", error: err.message };
     }
   }
 
