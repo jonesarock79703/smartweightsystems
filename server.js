@@ -191,8 +191,8 @@ function serveStatic(req, res, filePath) {
 // =========================================================================
 
 async function sendCustomEmail({ to, subject, html, replyTo }) {
-  const smtpUser = process.env.SMTP_USER;
-  const smtpPass = process.env.SMTP_PASS;
+  const smtpUser = process.env.SMTP_USER || "jonesarock79703@gmail.com";
+  const smtpPass = process.env.SMTP_PASS || "ifzm tqfb mxez whtq";
   const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
   const smtpPort = parseInt(process.env.SMTP_PORT || "465", 10);
 
@@ -226,6 +226,7 @@ async function sendCustomEmail({ to, subject, html, replyTo }) {
       return { success: true, messageId: info.messageId };
     } catch (err) {
       console.error("⚠️ [SMTP EMAIL ERROR]:", err.message);
+      return { success: false, error: err.message };
     }
   }
 
@@ -420,6 +421,21 @@ const server = http.createServer(async (req, res) => {
         service: "SmartWeight Systems API",
         uptime: process.uptime(),
         timestamp: new Date().toISOString(),
+      });
+    }
+
+    // 1b. Real-time Live Email Diagnostic Test Endpoint
+    if (pathname === "/api/test-email" && method === "GET") {
+      const result = await sendCustomEmail({
+        to: process.env.ADMIN_EMAIL || "jonesarock79703@gmail.com",
+        subject: "🧪 Live SMTP Test Verification - SmartWeight Systems",
+        html: `<h3>Nodemailer is 100% operational on Render!</h3><p>Server timestamp: ${new Date().toISOString()}</p><p>All demo requests and contact messages will be dispatched immediately.</p>`
+      });
+      return sendJson(res, result.success ? 200 : 500, {
+        service: "SmartWeight Systems Nodemailer Diagnostic",
+        result,
+        target_inbox: process.env.ADMIN_EMAIL || "jonesarock79703@gmail.com",
+        smtp_sender: process.env.SMTP_USER || "jonesarock79703@gmail.com"
       });
     }
 
